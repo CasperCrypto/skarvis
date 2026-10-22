@@ -1,0 +1,12 @@
+# CZAPLA v1 dependencies
+
+Standard library only. This file is intentionally empty of dependencies.
+
+Rationale: the node runs on a Raspberry Pi 5 and development happens on a Windows
+laptop. A dependency-free package behaves identically in both places, has nothing
+to break on a field unit, and does not need an upgrade window on a customer site.
+The FFT, the DoA search and the triangulation are all implementable in pure Python
+at the sample rates v1 needs.
+
+If a dependency ever becomes genuinely necessary, add it here with a comment naming
+the reason, and note it in CLAUDE.md.

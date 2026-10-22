@@ -1,0 +1,34 @@
+company,tier,email,source_url,second_channel,note
+Advanced Protection Systems (APS),1,jobs@apsystems.tech,https://apsystems.tech/en/career/,x.com/APS_SKYctrl; careers portal advancedprotectionsystems.recruitee.com,"Open roles incl. Java Dev, DevOps, Product Manager Radar & C-UAS. SAN C2 supplier."
+Advanced Protection Systems (APS),1,contact@apsystems.tech,https://polishdefenceindustry.gov.pl/en/company/advanced-protection-systems-sa-2/,tel +48 662 177 910,General company contact published on Polish Defence Companies Portal.
+Advanced Protection Systems (APS),1,d.wichniarek@apsystems.tech,https://polishdefenceindustry.gov.pl/en/company/advanced-protection-systems-sa-2/,tel +48 606 309 446,"NAMED: Dariusz Wichniarek, Dyrektor ds. Rozwoju Biznesu (BD Director). Best Tier-1 human."
+Hertz Systems,1,hertz@hertzsystems.com,https://www.hertzsystems.com/en/contact/,linkedin hertz-systems; form at /kontakt,"HAWK C-UAS maker. R&D at Space Technology Park, Zielona Gora."
+Hertz Systems,1,iod@hertzsystems.com,https://www.hertzsystems.com/en/contact/,form,"Data protection officer inbox - fallback only, not a sales queue."
+Dilectro Enterprise,2,kontakt@dilectro.pl,https://dilectro.pl,tel +48 881 726 700,Sells ASDT C-UAS; explicitly markets cloud/subscription C-UAS and custom integration.
+Fly Lab,2,biuro@flylab.expert,https://flylab.expert/contact,form; tel 536 093 047,SkyPatrol detection + own Interceptor. States it builds dedicated apps and has a dev team.
+Naftor,2,sekretariat@naftor.pl,https://naftor.pl,e-Doreczenia AE:PL-41211-40147-CAEDI-16; tel 22 487 57 87,Integrates cameras/RF/radar/jammers; claims integration with any protection-management platform.
+Saportia,2,biuro@saportia.pl,https://saportia.pl,tel 48 363 41 41,PSIM/BMS/VMS integrator with anti-drone line; works on critical infrastructure.
+Wasko,2,wasko@wasko.pl,https://wasko.pl/contact,form,"Large PL systems integrator, also resells Milestone-class VMS."
+Wasko,2,inwestor@wasko.pl,https://wasko.pl/contact,form,"Investor relations - likely ignore for this pitch, kept for completeness."
+Stekop,3,stekop@stekopsa.pl,https://stekopsa.pl/ochrona,regional sales lines per voivodeship,"SUFO status; explicitly protects military sites, airports and critical infrastructure."
+SUFO Security,3,centrum@sufo.pl,https://sufo.pl,tel 58 672 48 19,Licensed SUFO (concession L-0299/14). Centrum = monitoring centre.
+SUFO Security,3,kontakt@sufo.pl,https://sufo.pl,tel 58 672 48 19,"Same firm, general inbox."
+Sign Polska,3,sekretariat@signpolska.pl,https://signpolska.pl,form,SUFO member of Polska Izba Ochrony.
+Sign Polska,3,przetargi@signpolska.pl,https://signpolska.pl,form,Tenders inbox - relevant for subcontracting on a specific procurement.
+Sign Polska,3,techniczny@signpolska.pl,https://signpolska.pl,form,Technical dept - the right door for integration work.
+RR Security,3,biuro@rrsecurity.pl,https://rrsecurity.pl,form,SUFO member of Polska Izba Ochrony.
+Basma Security,3,basma@basmasecurity.pl,https://basmasecurity.pl,form,SUFO member of Polska Izba Ochrony.
+ANG Ochrona,3,biuro@angochrona.pl,https://angochrona.pl,form,SUFO member of Polska Izba Ochrony.
+Pewnosc,3,marketing@pewnosc.com.pl,https://pewnosc.com.pl,form,SUFO member; only marketing inbox published.
+Biuro Ochrony A-Z,3,sekretariat@firma-az.pl,https://firma-az.pl,form,SUFO member of Polska Izba Ochrony.
+Konwoj,3,biuro@konwoj.pl,https://konwoj.pl,handlowy@ same domain,SUFO member; handlowy (sales) inbox also available.
+Konwoj,3,handlowy@konwoj.pl,https://konwoj.pl,ochrona@ same domain,Sales inbox - preferred over biuro for this pitch.
+Konwoj,3,ochrona@konwoj.pl,https://konwoj.pl,form,Operations inbox.
+Umbrella Prosna,3,biuro@grupaumbrella.pl,https://umbrellapolska.pl,form,SUFO member of Polska Izba Ochrony. NOTE: published address is on the sibling domain grupaumbrella.pl.
+Emitel,4,sekretariat@emitel.pl,https://emitel.pl,linkedin emitel,IK operator (broadcast/telecom infrastructure). President publicly pushes service-continuity framing.
+Polska Izba Ochrony (PIOOIM),4,biuropio@piooim.pl,https://piooim.pl,form,Industry body listing all SUFO members - a channel to the whole SUFO market.
+PIT-RADWAR (PGZ),2,,https://www.pitradwar.com/kontakt,form; tel 71 342 50 41 / 71 343 02 58; Oddzial Gdansk 58 341 80 07; Kobylka 22 786 83 51,Battery-level C2 integrator in SAN. PUBLISHES NO EMAIL - form/phone only.
+Transbit,2,,https://transbit.pl/kontakt/,form; linkedin,Site returned HTTP 502 at build time - verify before sending.
+Oderon,2,,https://oderon.pl/kontakt/,form; tel +48 327937340,"States it has an in-house dev team building dedicated C-UAS apps - direct competitor for the app work, but also a potential buyer of capacity."
+Orlen Ochrona,3,,https://ochrona.orlen.pl,form; linkedin orlen-ochrona,SUFO inside Orlen group. ochrona.orlen.pl has NO MX - mail will not land. Parent orlen.pl accepts mail.
+PSE (operator),4,,https://pse.pl,form; linkedin,"IK operator, power transmission. Form only."

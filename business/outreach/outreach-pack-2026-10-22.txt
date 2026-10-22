@@ -1,0 +1,157 @@
+C-UAS SOFTWARE SUBCONTRACTING — OUTREACH PACK
+Built 2026-10-22. Kill date 2026-11-05. Target: first paid software engagement.
+Every address below was copied from a page that was fetched; MX verified.
+Send order = tier order. Do NOT bulk-send all tiers at once.
+
+SOURCE OF THE PITCH: Casper builds the software layer these companies sell
+dashboards, C2 UI, alarm workflows, incident audit trail, POIK/protection-plan
+documentation tooling, sensor integration glue, AI-assisted dev with fast turnaround.
+
+================================================================
+EMAILS — TIER 1: PRIME / C-UAS MAKERS (hire or subcontract software people now)
+================================================================================
+jobs@apsystems.tech
+contact@apsystems.tech
+d.wichniarek@apsystems.tech
+hertz@hertzsystems.com
+iod@hertzsystems.com
+
+================================================================
+EMAILS — TIER 2: INTEGRATORS / RESELLERS (need custom apps and PSIM integration)
+================================================================================
+kontakt@dilectro.pl
+biuro@flylab.expert
+sekretariat@naftor.pl
+biuro@saportia.pl
+wasko@wasko.pl
+inwestor@wasko.pl
+
+================================================================
+EMAILS — TIER 3: SUFO / SECURITY FIRMS (buy sensors + must write protection plans)
+================================================================================
+stekop@stekopsa.pl
+centrum@sufo.pl
+kontakt@sufo.pl
+sekretariat@signpolska.pl
+przetargi@signpolska.pl
+techniczny@signpolska.pl
+biuro@rrsecurity.pl
+basma@basmasecurity.pl
+biuro@angochrona.pl
+marketing@pewnosc.com.pl
+sekretariat@firma-az.pl
+biuro@konwoj.pl
+handlowy@konwoj.pl
+ochrona@konwoj.pl
+biuro@grupaumbrella.pl
+
+================================================================
+EMAILS — TIER 4: IK OPERATORS + INDUSTRY BODY (channel, slower)
+================================================================================
+sekretariat@emitel.pl
+biuropio@piooim.pl
+
+================================================================
+FORMS / PHONE-ONLY (no published address — use these channels, don't guess an email)
+================================================================================
+PIT-RADWAR (PGZ)        form at pitradwar.com/kontakt + careers kariera.grupapgz.pl
+                        tel (Wroclaw centrala) 71 342 50 41 (sekretariat 71 343 02 58)
+                        Oddzial Gdansk 58 341 80 07 | Filia Kobylka 22 786 83 51
+TRANSBIT                site was DOWN at time of build (HTTP 502) — linkedin + form
+ODERON                  form at oderon.pl/kontakt | tel +48 327937340 | Chorzow
+PSE                     form only (pse.pl) | linkedin
+ORLEN Ochrona           ochrona.orlen.pl has NO MX — mail will not land. Use the
+                        site form or linkedin. Parent orlen.pl does accept mail.
+APS direct line         +48 662 177 910 | APS HR +48 664 982 333
+                        careers portal: advancedprotectionsystems.recruitee.com
+
+================================================================
+X / LINKEDIN SECOND CHANNELS
+================================================================================
+APS                     x.com/APS_SKYctrl | linkedin.com/company/advancedprotectionsystems
+PIOTR-RADWAR / PGZ      kariera.grupapgz.pl | linkedin grupapgz
+Hertz Systems           linkedin hertz-systems | hertzsystems.com/kontakt form
+Stekop                  stekopsa.pl form + regional sales lines
+Orlen Ochrona           linkedin orlen-ochrona
+Emitel                  linkedin emitel
+Naftor                  e-Doreczenia AE:PL-41211-40147-CAEDI-16 | tel 22 487 57 87
+ALL OTHERS              company website contact form is the fallback for every row
+
+================================================================
+MESSAGE — TIER 1 (Polish, for makers: APS / Hertz / PGZ / Transbit)
+================================================================================
+Temat: Software do warstwy C2 / obslugi incydentow — podwykonawstwo
+
+Dzien dobry,
+
+Buduje oprogramowanie wokol sensorow antydronowych: dashboard C2, workflow
+alarmowy, audyt sladow i dokumentacja powykincidentowa (logi, nagrania, czasy
+reakcji, decyzje operatora) oraz eksport do planu ochrony obiektu. Nie robie
+sensorow ani efektorow — wylacznie warstwa software i integracja.
+
+Po nowelizacji z 29.05.2026 operatorzy infrastruktury krytycznej musza miec
+scenariusze dronowe i udokumentowane procedury. Ta dokumentacja to dzis praca
+recznie, a moze byc produktem.
+
+Proponuje maly, wyceniony zakres na probe: 2-4 tygodnie, jedna funkcja,
+z gory okreslona cena i termin. Pracuje szybko z narzedziami AI.
+
+Jesli macie teraz kolejke w software albo zlecenie na utrzymanie/wsparcie —
+checnie wysle zakres i cene do konkretnej funkcji.
+
+Pozdrawiam
+Casper Poplawski
+[tel] | [e-mail]
+
+================================================================
+MESSAGE — TIER 2/3 (Polish, for integrators and SUFO)
+================================================================================
+Temat: Warstwa aplikacyjna do systemow antydronowych — podwykonawstwo
+
+Dzien dobry,
+
+Mala firma software'owa, nie producent sprzetu. Robie to, co zwykle zostaje na
+koniec: panel dyspozytora, definiowanie stref i progow alarmowych, integracja
+sensorow z istniejacym CCTV/PSIM, historia zdarzen i audyt dla operatora.
+
+Nowelizacja z 29.05.2026 daje SUFO narzedzia do neutralizacji i wymaga procedur
+w planie ochrony obiektu. To jest w duzej czesci projekt software'owy i
+dokumentacyjny, a nie zakup sprzetu.
+
+Moge zrobic wyceniony zakres na probe (2-4 tygodnie, jedna funkcja) albo wejsc
+jako podwykonawca przy konkretnym przetargu.
+
+Prosze o kontakt, jesli macie takie zapotrzebowanie teraz lub w 2027.
+
+Pozdrawiam
+Casper Poplawski
+[tel] | [e-mail]
+
+================================================================
+DM (2-3 lines, X/LinkedIn — use for anyone with no email)
+================================================================================
+Czesc, buduje warstwe software do systemow antydronowych (dashboard C2, workflow
+alarmowy, audyt zdarzen, dokumentacja do planu ochrony). Nie sprzet — czysty
+software i integracja. Robicie cos takiego i potrzebujecie podwykonawcy? Mogę
+zrobic wyceniony zakres na 2-4 tygodnie.
+
+================================================================
+SEND SEQUENCE
+================================================================================
+Day 0  Tier 1 emails (5 addresses, 4 companies) + APS careers portal application
+Day 1  Tier 2 emails (6)
+Day 3  Tier 3 emails (15)
+Day 4  Forms/DM for form-only companies (PIT-RADWAR, Transbit, Oderon, Orlen Ochrona)
+Day 5  Follow-up on Tier 1 only, one line, same thread
+Day 7  Tier 4 (Emitel, PIOOIM membership enquiry)
+One follow-up per target maximum. No follow-up without a new, still-true fact.
+
+================================================================
+DO NOT WRITE
+================================================================================
+- No "military grade", "combat proven", "NATO compliant" — not provable by us.
+- No claim of an existing defence contract or reference.
+- No promise of sensors, radars, jammers or interceptors. Software only.
+- No price before the scope is agreed.
+- No numbered claims about the law beyond what is quoted here.
+- Do not send this to legalnotices@ / ip@ / compliance inboxes.

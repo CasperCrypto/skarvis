@@ -1,0 +1,20 @@
+# Generated and local-only
+__pycache__/
+*.pyc
+czapla-data/
+*.egg-info/
+.venv/
+venv/
+
+# Evidence blobs and event logs from real sites must never be committed
+software/czapla-data/
+evidence/
+events.jsonl
+
+# Scratch
+*.log
+*.iq16
+*.iq
+
+# Local Claude Code settings
+.claude/settings.local.json

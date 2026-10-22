@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HERMES node 3D model</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; padding: {{pad}}; background: {{bg}}; color: #ECEAE4; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 15px; line-height: 1.5; display: flex; flex-direction: column; gap: 20px">
+<sc-if value="{{showTitle}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.01em">HERMES node · 3D model</h1>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">Concept, simplified, not to scale</span>
+</div>
+</sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div role="img" aria-label="3D concept model of the HERMES node: a sensor box on a mast, with a five-antenna direction-finding array above it on the ID plus DF version" style="position: relative; height: 520px; perspective: 1300px; overflow: hidden; border: 1px solid #1F2125; border-radius: 12px; background: #0F1013">
+<div style="position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; transform: translateY({{shiftY}}px) scale(0.82) rotateX({{tilt}}deg) rotateY({{angle}}deg)">
+<sc-for list="{{faces}}" as="f" hint-placeholder-count="80">
+<div style="position: absolute; left: {{f.l}}px; top: {{f.t}}px; width: {{f.w}}px; height: {{f.h}}px; transform: {{f.tr}}; transform-style: preserve-3d; background: {{f.bg}}; border: 1px solid {{f.bd}}; box-sizing: border-box"></div>
+</sc-for>
+<div style="position: absolute; left: -75px; top: -95px; width: 150px; height: 190px; transform: {{decalTr}}; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; pointer-events: none">
+<svg width="46" height="46" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" style="fill: none; stroke: #ECEAE4; stroke-width: 2"></circle><line x1="4" y1="20" x2="28" y2="20" style="stroke: #ECEAE4; stroke-width: 2"></line><circle cx="16" cy="12.5" r="3.2" style="fill: #E9A23B"></circle></svg>
+<span style="font-weight: 600; letter-spacing: 0.3em; font-size: 13px; color: #ECEAE4">HERMES</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #9A978F">SKARVIS</span>
+<span style="display: flex; gap: 6px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #E9A23B"></span><span style="width: 6px; height: 6px; border-radius: 3px; background: #7FB3C9"></span></span>
+</div>
+</div>
+<div style="position: absolute; left: 14px; bottom: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">{{readout}}</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<sc-for list="{{views}}" as="b" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{b.pressed}}" onClick="{{b.go}}" style="min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1px solid {{b.bd}}; background: {{b.bg}}; color: {{b.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{b.label}}</button>
+</sc-for>
+<span style="width: 1px; height: 28px; background: #26282D; margin: 0 6px"></span>
+<sc-for list="{{variants}}" as="v" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{v.pressed}}" onClick="{{v.go}}" style="min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1px solid {{v.bd}}; background: {{v.bg}}; color: {{v.fg}}; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{v.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; color: #9A978F">{{variantTitle}}</div>
+<sc-for list="{{parts}}" as="p" hint-placeholder-count="8">
+<div style="display: flex; gap: 12px; align-items: flex-start; opacity: {{p.op}}">
+<span style="flex: 0 0 auto; width: 14px; height: 14px; margin-top: 4px; border-radius: 3px; background: {{p.color}}; border: 1px solid #3A3D44"></span>
+<div style="display: flex; flex-direction: column">
+<span style="font-weight: 600">{{p.name}}</span>
+<span style="font-size: 14px; color: #9A978F">{{p.note}}</span>
+</div>
+</div>
+</sc-for>
+<p style="margin: 6px 0 0; font-size: 13px; color: #9A978F">Open the cover to see the boards. ID + DF adds the KrakenSDR and the five-antenna array.</p>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"embedded":{"editor":"boolean","default":false},"$preview":{"width":1100,"height":720}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.state = { angle: 34, tilt: -16, spin: !reduce, open: false, variant: 'df', view: '' };
+  }
+  componentDidMount() {
+    var self = this;
+    var step = function () {
+      if (self.state.spin) {
+        self.setState({ angle: (self.state.angle + 0.35) % 360 });
+      }
+      self.raf = window.requestAnimationFrame(step);
+    };
+    this.raf = window.requestAnimationFrame(step);
+  }
+  componentWillUnmount() {
+    if (this.raf) { window.cancelAnimationFrame(this.raf); }
+  }
+  box(list, c, s, col) {
+    var x = c[0], y = c[1], z = c[2], W = s[0], H = s[1], D = s[2];
+    var base = 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px) ';
+    var fo = col.fo || 0;
+    var defs = [
+      [W, H, 'translateZ(' + (D / 2 + fo) + 'px)', col.f],
+      [W, H, 'rotateY(180deg) translateZ(' + (D / 2) + 'px)', col.b],
+      [D, H, 'rotateY(90deg) translateZ(' + (W / 2) + 'px)', col.r],
+      [D, H, 'rotateY(-90deg) translateZ(' + (W / 2) + 'px)', col.l],
+      [W, D, 'rotateX(90deg) translateZ(' + (H / 2) + 'px)', col.t],
+      [W, D, 'rotateX(-90deg) translateZ(' + (H / 2) + 'px)', col.u]
+    ];
+    for (var i = 0; i < defs.length; i++) {
+      var d = defs[i];
+      list.push({ w: d[0], h: d[1], l: -d[0] / 2, t: -d[1] / 2, tr: base + d[2], bg: d[3], bd: col.bd || 'rgba(255,255,255,0.07)' });
+    }
+  }
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var df = st.variant === 'df';
+    var open = st.open ? 80 : 0;
+    var sh = function (f, s, t) { return { f: f, b: s, l: s, r: s, t: t, u: s }; };
+    var faces = [];
+    this.box(faces, [0, 228, 0], [130, 8, 130], sh('#26282D', '#1E2024', '#2E3036'));
+    this.box(faces, [0, 60, 0], [22, 330, 22], sh('#4A4D55', '#383B41', '#55585F'));
+    this.box(faces, [0, -70, 0], [32, 12, 32], sh('#62656C', '#4C4F55', '#6E7178'));
+    this.box(faces, [0, 30, 0], [32, 12, 32], sh('#62656C', '#4C4F55', '#6E7178'));
+    this.box(faces, [0, -20, 51], [150, 190, 80], { f: '#2C2F35', b: '#1C1E22', l: '#212328', r: '#262930', t: '#363940', u: '#18191D', fo: open });
+    this.box(faces, [0, -66, 30], [100, 66, 4], sh('#3E7D52', '#2E5F3E', '#4A8F60'));
+    this.box(faces, [-52, 18, 30], [26, 56, 5], sh('#2F6FA8', '#245887', '#3A80BD'));
+    this.box(faces, [-20, 18, 30], [26, 56, 5], sh('#2F6FA8', '#245887', '#3A80BD'));
+    this.box(faces, [6, 18, 32], [14, 52, 8], sh('#7A5BA6', '#604885', '#8A6BB8'));
+    this.box(faces, [-55, -150, 51], [7, 70, 7], sh('#D8D3C8', '#B5AFA3', '#E8E4DB'));
+    this.box(faces, [55, -150, 51], [7, 70, 7], sh('#D8D3C8', '#B5AFA3', '#E8E4DB'));
+    if (df) {
+      this.box(faces, [44, 22, 34], [44, 70, 14], sh('#8A8F98', '#6C7078', '#9AA0A9'));
+      this.box(faces, [0, -182, 51], [14, 134, 14], sh('#4A4D55', '#383B41', '#55585F'));
+      this.box(faces, [0, -252, 51], [176, 6, 176], sh('#33363C', '#2A2C31', '#3D4047'));
+      var r = 72;
+      for (var i = 0; i < 5; i++) {
+        var a = (i * 72) * Math.PI / 180;
+        this.box(faces, [Math.round(r * Math.sin(a)), -310, Math.round(51 + r * Math.cos(a))], [7, 110, 7], sh('#E9A23B', '#C9862A', '#F2B85C'));
+      }
+    }
+    var mk = function (label, active, go) {
+      return {
+        label: label,
+        pressed: active ? 'true' : 'false',
+        bg: active ? '#E9A23B' : 'transparent',
+        fg: active ? '#0B0C0E' : '#ECEAE4',
+        bd: active ? '#E9A23B' : '#3A3D44',
+        go: go
+      };
+    };
+    var views = [
+      mk(st.spin ? 'Pause' : 'Rotate', st.spin, function () { self.setState({ spin: !self.state.spin, tilt: -16, view: '' }); }),
+      mk('Front', !st.spin && st.view === 'front', function () { self.setState({ spin: false, angle: 0, tilt: -8, view: 'front' }); }),
+      mk('Side', !st.spin && st.view === 'side', function () { self.setState({ spin: false, angle: 90, tilt: -8, view: 'side' }); }),
+      mk('Top', !st.spin && st.view === 'top', function () { self.setState({ spin: false, angle: 0, tilt: -72, view: 'top' }); }),
+      mk(st.open ? 'Close cover' : 'Open cover', st.open, function () { self.setState({ open: !self.state.open }); })
+    ];
+    var variants = [
+      mk('ID', !df, function () { self.setState({ variant: 'id' }); }),
+      mk('ID + DF', df, function () { self.setState({ variant: 'df' }); })
+    ];
+    var parts = [
+      { name: 'IP67 enclosure', note: 'Mast or wall mount', color: '#2C2F35', op: 1 },
+      { name: 'Raspberry Pi 5', note: 'Runs the node, keeps records offline', color: '#3E7D52', op: 1 },
+      { name: 'ESP32-C5 ×2', note: 'Remote ID on 2.4 and 5 GHz Wi-Fi', color: '#2F6FA8', op: 1 },
+      { name: 'CC2652P receiver', note: 'Remote ID on Bluetooth 5 Long Range', color: '#7A5BA6', op: 1 },
+      { name: 'ID antennas', note: '2.4 and 5 GHz, on the box', color: '#D8D3C8', op: 1 },
+      { name: 'KrakenSDR', note: '5 coherent channels, 24 to 1766 MHz. ID + DF only', color: '#8A8F98', op: df ? 1 : 0.4 },
+      { name: 'Direction-finding array', note: '5 antennas on a circle, tuned for 868 MHz. ID + DF only', color: '#E9A23B', op: df ? 1 : 0.4 },
+      { name: 'Mast clamps', note: '3D-printed adapters', color: '#62656C', op: 1 }
+    ];
+    var a = Math.round(st.angle);
+    var embedded = this.props.embedded ?? false;
+    return {
+      faces: faces,
+      tilt: st.tilt,
+      angle: st.angle,
+      shiftY: df ? 40 : 10,
+      decalTr: 'translate3d(0px,-20px,' + (91.6 + open) + 'px)',
+      views: views,
+      variants: variants,
+      parts: parts,
+      variantTitle: df ? 'HERMES ID + DF · PARTS' : 'HERMES ID · PARTS',
+      readout: 'YAW ' + a + '° · PITCH ' + Math.round(-st.tilt) + '°' + (st.open ? ' · COVER OPEN' : ''),
+      showTitle: !embedded,
+      pad: embedded ? '0px' : '32px',
+      bg: embedded ? 'transparent' : '#0B0C0E'
+    };
+  }
+}
+</script>
+</body>
+</html>

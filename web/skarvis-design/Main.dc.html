@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SKARVIS: drone detection for every site</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0B0C0E}
+html{scroll-behavior:smooth}
+a{color:#E9A23B}a:hover{color:#F4C27A}
+@keyframes skvSweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes skvPulse{0%,100%{opacity:1}50%{opacity:.2}}
+.skv-sweep{transform-origin:260px 260px;animation:skvSweep 6s linear infinite}
+.skv-pulse{animation:skvPulse 1.6s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.skv-sweep,.skv-pulse{animation:none}}
+input,select,textarea{font:inherit}
+</style>
+</helmet>
+<div id="top" style="background: #0B0C0E; color: #ECEAE4; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 16px; line-height: 1.5">
+
+<div style="background: #17140F; border-bottom: 1px solid #3A2E1A">
+<div style="max-width: 1200px; margin: 0 auto; padding: 10px clamp(16px, 4vw, 48px); font-size: 14px; color: #E9C78F">In development. First Hermes nodes are being built and tested now. <a href="#status">See where we are</a></div>
+</div>
+
+<header style="border-bottom: 1px solid #1F2125">
+<div style="max-width: 1200px; margin: 0 auto; padding: 18px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #ECEAE4" aria-label="SKARVIS home">
+<svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" style="fill: none; stroke: #ECEAE4; stroke-width: 2"></circle><line x1="4" y1="20" x2="28" y2="20" style="stroke: #ECEAE4; stroke-width: 2"></line><circle cx="16" cy="12.5" r="3.2" style="fill: #E9A23B"></circle></svg>
+<span style="font-weight: 600; letter-spacing: 0.3em; font-size: 17px">SKARVIS</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px">
+<a href="#how" style="color: #B9B6AE; text-decoration: none">How it works</a>
+<a href="#hermes" style="color: #B9B6AE; text-decoration: none">Hermes node</a>
+<a href="#specs" style="color: #B9B6AE; text-decoration: none">Targets</a>
+<a href="#status" style="color: #B9B6AE; text-decoration: none">Status</a>
+</nav>
+<a href="#pilot" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 6px; background: #E9A23B; color: #0B0C0E; font-weight: 600; font-size: 15px; text-decoration: none">Join the pilot list</a>
+</div>
+</header>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: clamp(48px, 8vw, 104px) clamp(16px, 4vw, 48px) 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">SKARVIS · HERMES DETECTION NODE</div>
+<h1 style="margin: 0; font-size: clamp(44px, 6vw, 84px); line-height: 1.02; letter-spacing: -0.025em; font-weight: 600">Know when a drone is over your site.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #B9B6AE; max-width: 34em">Hermes listens for the radio signals drones give off: their Remote ID broadcast and their control link. You get an alert, a direction, and an incident record you can file with your protection plan.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#pilot" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 6px; background: #E9A23B; color: #0B0C0E; font-weight: 600; text-decoration: none">Join the pilot list</a>
+<a href="#status" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 6px; border: 1px solid #3A3D44; color: #ECEAE4; font-weight: 500; text-decoration: none">See the build status</a>
+</div>
+<p style="margin: 0; font-size: 14px; color: #9A978F">Receive-only hardware. No jamming, nothing sent to drones.</p>
+</div>
+<figure style="flex: 1 1 420px; min-width: 0; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<svg viewBox="0 0 520 520" style="width: 100%; max-width: 520px; height: auto" role="img" aria-label="Illustration: a drone track crossing into a site zone, with the pilot position outside the fence">
+<circle cx="260" cy="260" r="250" style="fill: #101114; stroke: #1F2125; stroke-width: 1"></circle>
+<circle cx="260" cy="260" r="190" style="fill: none; stroke: #23252A; stroke-width: 1"></circle>
+<circle cx="260" cy="260" r="130" style="fill: none; stroke: #23252A; stroke-width: 1"></circle>
+<circle cx="260" cy="260" r="70" style="fill: none; stroke: #23252A; stroke-width: 1"></circle>
+<line x1="10" y1="260" x2="510" y2="260" style="stroke: #1C1E22; stroke-width: 1"></line>
+<line x1="260" y1="10" x2="260" y2="510" style="stroke: #1C1E22; stroke-width: 1"></line>
+<polygon points="196,186 334,172 356,300 262,350 176,300" style="fill: #E9A23B; fill-opacity: 0.07; stroke: #E9A23B; stroke-width: 1.5; stroke-dasharray: 6 5"></polygon>
+<text x="186" y="330" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #9A978F">SITE ZONE</text>
+<g class="skv-sweep">
+<path d="M260 260 L260 10 A250 250 0 0 1 436.8 83.2 Z" style="fill: #E9A23B; fill-opacity: 0.09"></path>
+<line x1="260" y1="260" x2="436.8" y2="83.2" style="stroke: #E9A23B; stroke-opacity: 0.6; stroke-width: 1.5"></line>
+</g>
+<circle cx="260" cy="260" r="9" style="fill: #0B0C0E; stroke: #ECEAE4; stroke-width: 1.5"></circle>
+<circle cx="260" cy="260" r="3" style="fill: #E9A23B"></circle>
+<polyline points="478,104 430,140 382,170 336,200 300,226" style="fill: none; stroke: #7FB3C9; stroke-width: 1.5; stroke-dasharray: 3 4"></polyline>
+<line x1="472" y1="196" x2="300" y2="226" style="stroke: #7FB3C9; stroke-opacity: 0.5; stroke-width: 1; stroke-dasharray: 2 4"></line>
+<rect x="466" y="190" width="12" height="12" style="fill: none; stroke: #7FB3C9; stroke-width: 1.5"></rect>
+<text x="452" y="222" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #7FB3C9">PILOT</text>
+<circle class="skv-pulse" cx="300" cy="226" r="14" style="fill: none; stroke: #E9A23B; stroke-width: 1.5"></circle>
+<circle cx="300" cy="226" r="5" style="fill: #E9A23B"></circle>
+<rect x="166" y="104" width="160" height="58" rx="4" style="fill: #0B0C0E; stroke: #E9A23B; stroke-width: 1"></rect>
+<text x="178" y="124" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; fill: #E9A23B">IN ZONE · 14:32:07</text>
+<text x="178" y="141" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #ECEAE4">REMOTE ID · SN 1581F…</text>
+<text x="178" y="155" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #9A978F">86 m · 9 m/s · NE</text>
+<line x1="246" y1="162" x2="292" y2="218" style="stroke: #E9A23B; stroke-opacity: 0.5; stroke-width: 1"></line>
+<line x1="260" y1="260" x2="70" y2="400" style="stroke: #9A978F; stroke-width: 1.2; stroke-dasharray: 6 4"></line>
+<text x="40" y="424" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #9A978F">868 MHz LINK · BEARING 234°</text>
+</svg>
+<figcaption style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">Illustration, not live data</figcaption>
+</figure>
+</section>
+
+<section aria-label="Key facts" style="border-top: 1px solid #1F2125; border-bottom: 1px solid #1F2125">
+<div style="max-width: 1200px; margin: 0 auto; padding: 36px clamp(16px, 4vw, 48px); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 20px; font-weight: 600">Remote ID</div>
+<div style="font-size: 15px; color: #9A978F">Mandatory on class-marked drones in the EU since 1 January 2024. Hermes reads it: serial, position, pilot location.</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 20px; font-weight: 600">Direction finding</div>
+<div style="font-size: 15px; color: #9A978F">A five-antenna array listens to 868 MHz and 1.2 GHz links that FPV and long-range drones use, and points to them.</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 20px; font-weight: 600">Receive-only</div>
+<div style="font-size: 15px; color: #9A978F">Listening devices need no radio permit in Poland (art. 145 Prawo komunikacji elektronicznej).</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 20px; font-weight: 600">Polish incident report</div>
+<div style="font-size: 15px; color: #9A978F">Each alarm becomes a record for your protection plan file.</div>
+</div>
+</div>
+</section>
+
+<section id="how" style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 48px); display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 40em">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">HOW IT WORKS</div>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600">Listen. Alert. Prove.</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+<div style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 20a10 10 0 0 1 20 0M10 20a6 6 0 0 1 12 0" style="fill: none; stroke: #E9A23B; stroke-width: 1.8; stroke-linecap: round"></path><circle cx="16" cy="21" r="2" style="fill: #E9A23B"></circle></svg>
+<h3 style="margin: 0; font-size: 22px; font-weight: 600">Listen</h3>
+<p style="margin: 0; color: #B9B6AE">Hermes sits on a mast or roof. It hears Remote ID on Wi-Fi and Bluetooth, and finds the direction of drone control links. No cameras, no emissions.</p>
+</div>
+<div style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 22V15a7 7 0 0 1 14 0v7l2 3H7z M13 27h6" style="fill: none; stroke: #E9A23B; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round"></path></svg>
+<h3 style="margin: 0; font-size: 22px; font-weight: 600">Alert</h3>
+<p style="margin: 0; color: #B9B6AE">A drone crosses your zone and the guard on duty gets an SMS, Telegram or email, with confidence shown, not hidden.</p>
+</div>
+<div style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h10l6 6v18H9z M19 4v6h6 M13 17h8 M13 21h8" style="fill: none; stroke: #E9A23B; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round"></path></svg>
+<h3 style="margin: 0; font-size: 22px; font-weight: 600">Prove</h3>
+<p style="margin: 0; color: #B9B6AE">Every alarm keeps its raw evidence. One click turns it into a Polish incident report: time, track, serial, direction, pilot position when broadcast.</p>
+</div>
+</div>
+</section>
+
+<section id="hermes" style="background: #0E0F12; border-top: 1px solid #1F2125; border-bottom: 1px solid #1F2125">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 48px) 72px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 42em">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">HARDWARE</div>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600">The Hermes node</h2>
+<p style="margin: 0; font-size: 18px; color: #B9B6AE">One weatherproof box per mast. The ID version reads Remote ID. The ID + DF version adds a five-antenna direction finder on top. Rotate it, open the cover, switch versions.</p>
+</div>
+<dc-import name="Node3D" embedded="{{true}}" hint-size="100%,660px"></dc-import>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<div style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Identity receivers</h3>
+<p style="margin: 0; color: #B9B6AE; font-size: 15px"><strong style="color: #ECEAE4; font-weight: 500">Hears:</strong> drones broadcasting Remote ID on 2.4 and 5 GHz Wi-Fi and Bluetooth 5.</p>
+<p style="margin: 0; color: #B9B6AE; font-size: 15px"><strong style="color: #ECEAE4; font-weight: 500">Gives:</strong> serial number, position, altitude, speed, pilot or takeoff position.</p>
+<p style="margin: 0; color: #B9B6AE; font-size: 15px"><strong style="color: #ECEAE4; font-weight: 500">Misses:</strong> anything that doesn't broadcast, including most hostile drones.</p>
+</div>
+<div style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 19px; font-weight: 600">Direction finder</h3>
+<p style="margin: 0; color: #B9B6AE; font-size: 15px"><strong style="color: #ECEAE4; font-weight: 500">Hears:</strong> control and video links at 433 MHz, 868 MHz and 1.2 GHz, used by FPV and long-range drones.</p>
+<p style="margin: 0; color: #B9B6AE; font-size: 15px"><strong style="color: #ECEAE4; font-weight: 500">Gives:</strong> a bearing from one node, a position from two.</p>
+<p style="margin: 0; color: #B9B6AE; font-size: 15px"><strong style="color: #ECEAE4; font-weight: 500">Misses:</strong> 2.4 and 5.8 GHz links (the identity receivers cover those that broadcast), and drones with no radio at all.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="app" style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 48px); display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 42em">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">SOFTWARE</div>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600">One map, every node, every flight</h2>
+<p style="margin: 0; font-size: 18px; color: #B9B6AE">Draw your zones, whitelist your own inspection drones, acknowledge alarms and export the record. Works on the site network with no internet; the internet only adds remote access.</p>
+</div>
+<div style="border: 1px solid #26282D; border-radius: 12px; overflow: hidden; background: #0F1013">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding: 14px 20px; border-bottom: 1px solid #1F2125; background: #121316">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" style="fill: none; stroke: #ECEAE4; stroke-width: 2.4"></circle><line x1="4" y1="20" x2="28" y2="20" style="stroke: #ECEAE4; stroke-width: 2.4"></line><circle cx="16" cy="12.5" r="3.2" style="fill: #E9A23B"></circle></svg>
+<span style="font-weight: 600">[SITE NAME]</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">
+<span>2 Hermes nodes</span>
+<span>Zone: armed</span>
+<span style="color: #E9A23B">1 open incident</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex: 999 1 560px; min-width: 0; border-right: 1px solid #1F2125">
+<svg viewBox="0 0 760 460" style="display: block; width: 100%; height: auto" role="img" aria-label="Mockup map: two nodes near a building, a dashed site zone, a Remote ID drone track entering from the north east and a bearing line from each node">
+<rect x="0" y="0" width="760" height="460" style="fill: #101114"></rect>
+<path d="M0 300 L760 260 M250 0 L300 460 M520 0 L560 460" style="fill: none; stroke: #1B1D21; stroke-width: 16"></path>
+<rect x="320" y="150" width="120" height="80" rx="3" style="fill: #17191C; stroke: #24262B"></rect>
+<rect x="330" y="320" width="90" height="70" rx="3" style="fill: #17191C; stroke: #24262B"></rect>
+<rect x="90" y="110" width="110" height="70" rx="3" style="fill: #17191C; stroke: #24262B"></rect>
+<rect x="600" y="330" width="110" height="80" rx="3" style="fill: #17191C; stroke: #24262B"></rect>
+<polygon points="300,120 470,110 490,250 400,290 290,250" style="fill: #E9A23B; fill-opacity: 0.06; stroke: #E9A23B; stroke-width: 1.5; stroke-dasharray: 6 5"></polygon>
+<line x1="318" y1="132" x2="430" y2="196" style="stroke: #9A978F; stroke-width: 1; stroke-dasharray: 4 4"></line>
+<line x1="398" y1="276" x2="424" y2="206" style="stroke: #9A978F; stroke-width: 1; stroke-dasharray: 4 4"></line>
+<circle cx="318" cy="132" r="7" style="fill: #0B0C0E; stroke: #ECEAE4; stroke-width: 1.5"></circle>
+<circle cx="398" cy="276" r="7" style="fill: #0B0C0E; stroke: #ECEAE4; stroke-width: 1.5"></circle>
+<text x="292" y="114" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #9A978F">HERMES 1</text>
+<text x="410" y="300" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #9A978F">HERMES 2</text>
+<polyline points="720,40 660,70 600,100 540,140 470,180 420,200" style="fill: none; stroke: #7FB3C9; stroke-width: 2; stroke-dasharray: 4 4"></polyline>
+<circle class="skv-pulse" cx="420" cy="200" r="14" style="fill: none; stroke: #E9A23B; stroke-width: 1.5"></circle>
+<circle cx="420" cy="200" r="5" style="fill: #E9A23B"></circle>
+<rect x="700" y="20" width="12" height="12" style="fill: none; stroke: #7FB3C9; stroke-width: 1.5"></rect>
+<text x="628" y="18" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #7FB3C9">PILOT</text>
+<rect x="16" y="404" width="370" height="40" rx="4" style="fill: #0B0C0E; stroke: #24262B"></rect>
+<circle cx="34" cy="424" r="5" style="fill: #E9A23B"></circle>
+<text x="46" y="428" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #B9B6AE">Drone</text>
+<rect x="96" y="418" width="12" height="12" style="fill: none; stroke: #7FB3C9; stroke-width: 1.5"></rect>
+<text x="114" y="428" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #B9B6AE">Pilot</text>
+<circle cx="168" cy="424" r="6" style="fill: #0B0C0E; stroke: #ECEAE4; stroke-width: 1.5"></circle>
+<text x="180" y="428" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #B9B6AE">Node</text>
+<line x1="226" y1="424" x2="248" y2="424" style="stroke: #E9A23B; stroke-width: 1.5; stroke-dasharray: 4 3"></line>
+<text x="254" y="428" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #B9B6AE">Zone</text>
+<line x1="296" y1="424" x2="318" y2="424" style="stroke: #9A978F; stroke-width: 1; stroke-dasharray: 4 4"></line>
+<text x="324" y="428" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; fill: #B9B6AE">Bearing</text>
+</svg>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div style="border: 1px solid #E9A23B; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: rgba(233,162,59,0.06)">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #E9A23B">14:32:07 · DRONE ENTERED ZONE</div>
+<table style="border-collapse: collapse; font-size: 14px; width: 100%">
+<tbody>
+<tr><th scope="row" style="text-align: left; font-weight: 400; color: #9A978F; padding: 4px 12px 4px 0">Source</th><td style="padding: 4px 0">Remote ID + bearing</td></tr>
+<tr><th scope="row" style="text-align: left; font-weight: 400; color: #9A978F; padding: 4px 12px 4px 0">Serial</th><td style="padding: 4px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px">1581F…</td></tr>
+<tr><th scope="row" style="text-align: left; font-weight: 400; color: #9A978F; padding: 4px 12px 4px 0">Altitude</th><td style="padding: 4px 0">86 m</td></tr>
+<tr><th scope="row" style="text-align: left; font-weight: 400; color: #9A978F; padding: 4px 12px 4px 0">Pilot</th><td style="padding: 4px 0">Outside fence, NE</td></tr>
+<tr><th scope="row" style="text-align: left; font-weight: 400; color: #9A978F; padding: 4px 12px 4px 0">Confidence</th><td style="padding: 4px 0">0.83</td></tr>
+</tbody>
+</table>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 6px; border: 0; background: #E9A23B; color: #0B0C0E; font-weight: 600; cursor: pointer">Export report (PL)</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1px solid #3A3D44; background: transparent; color: #ECEAE4; cursor: pointer">Acknowledge</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: #9A978F">TODAY</div>
+<div style="display: flex; gap: 12px; font-size: 14px; padding-bottom: 10px; border-bottom: 1px solid #1F2125"><span style="font-family: 'IBM Plex Mono', monospace; color: #9A978F">09:12</span><span>Roof inspection drone (whitelisted)</span></div>
+<div style="display: flex; gap: 12px; font-size: 14px; padding-bottom: 10px; border-bottom: 1px solid #1F2125"><span style="font-family: 'IBM Plex Mono', monospace; color: #9A978F">11:48</span><span>868 MHz link, bearing only, no breach</span></div>
+<div style="display: flex; gap: 12px; font-size: 14px"><span style="font-family: 'IBM Plex Mono', monospace; color: #E9A23B">14:32</span><span>Zone breach, incident open</span></div>
+</div>
+</div>
+</div>
+</div>
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">Design mockup, not live data.</p>
+</section>
+
+<section id="specs" style="background: #0E0F12; border-top: 1px solid #1F2125; border-bottom: 1px solid #1F2125">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 48px); display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 46em">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">DESIGN TARGETS</div>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600">What we're building, and what's measured</h2>
+<p style="margin: 0; font-size: 17px; color: #B9B6AE">Nothing below is a measured result yet. Each line moves to "measured" with its real number once the field tests run.</p>
+</div>
+<div style="overflow-x: auto; border: 1px solid #1F2125; border-radius: 10px">
+<table style="border-collapse: collapse; width: 100%; min-width: 720px; font-size: 15px">
+<thead>
+<tr style="background: #121316">
+<th scope="col" style="text-align: left; padding: 14px 20px; font-weight: 600; width: 24%">Item</th>
+<th scope="col" style="text-align: left; padding: 14px 20px; font-weight: 600">Design</th>
+<th scope="col" style="text-align: left; padding: 14px 20px; font-weight: 600; width: 16%">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Remote ID reception</th><td style="padding: 14px 20px">Wi-Fi beacon, Wi-Fi NAN, Bluetooth 4 legacy, Bluetooth 5 Long Range (ASTM F3411, ASD-STAN prEN 4709-002)</td><td style="padding: 14px 20px; color: #E9C78F">Target</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Direction finding</th><td style="padding: 14px 20px">KrakenSDR, 5 coherent channels, 24 to 1766 MHz; 433 MHz, 868 MHz and 1.2 GHz links</td><td style="padding: 14px 20px; color: #E9C78F">Target</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Bearing accuracy</th><td style="padding: 14px 20px">Within ±15° on the bench</td><td style="padding: 14px 20px; color: #E9C78F">Target, not measured</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Position from two nodes</th><td style="padding: 14px 20px">Within 100 m at 500 m range</td><td style="padding: 14px 20px; color: #E9C78F">Target, not measured</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Alarm latency</th><td style="padding: 14px 20px">Under 5 s from first signal to alert</td><td style="padding: 14px 20px; color: #E9C78F">Target, not measured</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Detection range</th><td style="padding: 14px 20px">Measured per site with a test flight; depends on mast height and terrain</td><td style="padding: 14px 20px; color: #E9C78F">Not measured</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Compute and power</th><td style="padding: 14px 20px">Raspberry Pi 5, local storage, PoE or 12 V, LTE or Ethernet</td><td style="padding: 14px 20px; color: #E9C78F">Target</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Offline operation</th><td style="padding: 14px 20px">Detection and records work with no internet</td><td style="padding: 14px 20px; color: #E9C78F">Target</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Emissions</th><td style="padding: 14px 20px">Receive-only. No transmit path in the hardware.</td><td style="padding: 14px 20px; color: #B9D6A8">By design</td></tr>
+<tr style="border-top: 1px solid #1F2125"><th scope="row" style="text-align: left; padding: 14px 20px; font-weight: 500; color: #B9B6AE">Data</th><td style="padding: 14px 20px">Stored on site or EU hosting, 90-day default retention</td><td style="padding: 14px 20px; color: #B9D6A8">By design</td></tr>
+</tbody>
+</table>
+</div>
+<div style="border: 1px solid #26282D; border-radius: 10px; padding: 24px 28px; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline">
+<h3 style="margin: 0; font-size: 20px; font-weight: 600; flex: 0 0 auto">What Hermes can't see</h3>
+<p style="margin: 0; color: #B9B6AE; flex: 1 1 420px">Fibre-optic FPV drones and drones flying with no radio at all. Those need radar or cameras. Sites that need them covered can feed a partner's radar into the same map.</p>
+</div>
+</div>
+</section>
+
+<section id="status" style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 48px); display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 42em">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">BUILD STATUS</div>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600">Where we are</h2>
+<p style="margin: 0; font-size: 18px; color: #B9B6AE">We publish results as they come in, including the ones that fail.</p>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px">
+<li style="background: #121316; border: 1px solid #E9A23B; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #E9A23B">NOW</span>
+<span style="font-size: 18px; font-weight: 600">Software</span>
+<span style="font-size: 15px; color: #B9B6AE">Detection, classification and Polish report pipeline running on simulated signals, with 110 automated tests passing.</span>
+</li>
+<li style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">NEXT</span>
+<span style="font-size: 18px; font-weight: 600">First node on the bench</span>
+<span style="font-size: 15px; color: #B9B6AE">Remote ID reception and direction finding against known transmitters.</span>
+</li>
+<li style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">THEN</span>
+<span style="font-size: 18px; font-weight: 600">Outdoor tests</span>
+<span style="font-size: 15px; color: #B9B6AE">Two nodes, real drone flights, 24-hour false alarm count, 7 days in Polish weather.</span>
+</li>
+<li style="background: #121316; border: 1px solid #1F2125; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #9A978F">AFTER THAT</span>
+<span style="font-size: 18px; font-weight: 600">Pilot sites</span>
+<span style="font-size: 15px; color: #B9B6AE">90-day pilots for sites on the list, with scope and acceptance criteria agreed first.</span>
+</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span style="border: 1px solid #26282D; border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #B9B6AE">Gminy and powiaty</span>
+<span style="border: 1px solid #26282D; border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #B9B6AE">Solar and wind farms</span>
+<span style="border: 1px solid #26282D; border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #B9B6AE">Logistics parks</span>
+<span style="border: 1px solid #26282D; border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #B9B6AE">Critical infrastructure operators</span>
+<span style="border: 1px solid #26282D; border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #B9B6AE">Security companies and integrators</span>
+</div>
+</section>
+
+<section id="pilot" style="background: #0E0F12; border-top: 1px solid #1F2125">
+<div style="max-width: 1200px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; color: #E9A23B">PILOT LIST</div>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600">Put your site on the list</h2>
+<p style="margin: 0; font-size: 18px; color: #B9B6AE">Tell us about your site. When the outdoor tests pass, sites on the list get the first pilot slots.</p>
+<ol style="margin: 8px 0 0; padding-left: 20px; color: #B9B6AE; display: flex; flex-direction: column; gap: 8px">
+<li>We call you and look at the site on a map.</li>
+<li>If it's a fit, we send a one-page, non-binding letter of intent.</li>
+<li>You get the test results before anything is offered for sale.</li>
+</ol>
+</div>
+<form style="flex: 1 1 460px; min-width: 0; background: #121316; border: 1px solid #1F2125; border-radius: 12px; padding: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-name" style="font-size: 14px; color: #B9B6AE">Name</label>
+<input id="f-name" type="text" autocomplete="name" style="min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-org" style="font-size: 14px; color: #B9B6AE">Organization</label>
+<input id="f-org" type="text" autocomplete="organization" style="min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-email" style="font-size: 14px; color: #B9B6AE">Email</label>
+<input id="f-email" type="email" autocomplete="email" style="min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-phone" style="font-size: 14px; color: #B9B6AE">Phone</label>
+<input id="f-phone" type="tel" autocomplete="tel" style="min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-type" style="font-size: 14px; color: #B9B6AE">Site type</label>
+<select id="f-type" style="min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4">
+<option>Gmina or powiat</option>
+<option>Solar or wind farm</option>
+<option>Warehouse or logistics</option>
+<option>Critical infrastructure</option>
+<option>Security company or integrator</option>
+<option>Other</option>
+</select>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f-town" style="font-size: 14px; color: #B9B6AE">Town</label>
+<input id="f-town" type="text" style="min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1">
+<label for="f-msg" style="font-size: 14px; color: #B9B6AE">What worries you about drones at this site?</label>
+<textarea id="f-msg" rows="4" style="padding: 10px 12px; border-radius: 6px; border: 1px solid #3A3D44; background: #0B0C0E; color: #ECEAE4; resize: vertical"></textarea>
+</div>
+<div style="grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px">
+<input id="f-loi" type="checkbox" style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #E9A23B">
+<label for="f-loi" style="font-size: 14px; color: #B9B6AE">I'm open to signing a non-binding letter of intent for a pilot.</label>
+</div>
+<div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<button type="submit" style="min-height: 48px; padding: 0 24px; border-radius: 6px; border: 0; background: #E9A23B; color: #0B0C0E; font-weight: 600; font-size: 16px; cursor: pointer">Join the pilot list</button>
+<span style="font-size: 14px; color: #9A978F">No payment. No commitment.</span>
+</div>
+</form>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #1F2125">
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 14px; color: #9A978F">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px; color: #ECEAE4">
+<svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" style="fill: none; stroke: #ECEAE4; stroke-width: 2.2"></circle><line x1="4" y1="20" x2="28" y2="20" style="stroke: #ECEAE4; stroke-width: 2.2"></line><circle cx="16" cy="12.5" r="3.2" style="fill: #E9A23B"></circle></svg>
+<span style="font-weight: 600; letter-spacing: 0.3em">SKARVIS</span>
+</div>
+<div>[DOMAIN] · Bolesławiec, Poland</div>
+<div>[EMAIL] · [PHONE]</div>
+</div>
+<div style="max-width: 30em; display: flex; flex-direction: column; gap: 10px">
+<div>Detection and alerting only. Hermes does not jam, take over or bring down drones.</div>
+<div>© 2026 SKARVIS</div>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
