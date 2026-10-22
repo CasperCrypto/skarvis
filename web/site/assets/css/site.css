@@ -29,6 +29,7 @@
 
   --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --brand: "Space Grotesk", "Inter Tight", system-ui, sans-serif;
 
   --r: 2px;
   --wrap: 1320px;
@@ -353,10 +354,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin-right: auto;
 }
 .brand-word {
-  font-weight: 600;
-  font-size: 15.5px;
-  letter-spacing: 0.32em;
-  margin-right: -0.32em;
+  font-family: var(--brand);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 0.22em;
+  margin-right: -0.22em;
 }
 .nav-links {
   display: flex;

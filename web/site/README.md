@@ -17,13 +17,17 @@ No build step and no framework: plain HTML, one CSS file, ES modules.
 
 ## Run it locally
 
-ES modules do not load from `file://`, so serve the folder:
+ES modules do not load from `file://`, so the folder has to be served.
+On Windows, double-click `web/preview-site.bat`: it serves the site on
+this computer only and opens http://localhost:8000. Or from a terminal:
 
 ```bash
 python -m http.server 8765 --directory web/site
 ```
 
-Then open http://localhost:8765.
+Then open http://localhost:8765. Nothing is public: the server only
+listens on this machine. (The pilot form still writes to the real
+Supabase table, so delete test rows there.)
 
 ## Pilot form
 

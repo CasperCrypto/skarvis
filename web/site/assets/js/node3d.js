@@ -490,27 +490,13 @@ function decalTexture() {
   const cx = W / 2;
   const draw = () => {
     g.clearRect(0, 0, W, H);
-    // mark
-    g.strokeStyle = '#eceae4';
-    g.lineWidth = 12;
-    g.beginPath();
-    g.arc(cx, 220, 110, 0, Math.PI * 2);
-    g.stroke();
-    g.beginPath();
-    g.moveTo(cx - 108, 252);
-    g.lineTo(cx + 108, 252);
-    g.stroke();
+    // HERMES, the product name on the device
+    spaced(g, 'HERMES', cx, 300, '600 60px "Space Grotesk", "Inter Tight", sans-serif', '#eceae4', 16);
+    // accent rule
     g.fillStyle = '#ff5a1f';
-    g.beginPath();
-    g.arc(cx, 196, 26, 0, Math.PI * 2);
-    g.fill();
-    // words
-    spaced(g, 'HERMES', cx, 420, '600 54px "Inter Tight", system-ui, sans-serif', '#eceae4', 18);
-    spaced(g, 'SKARVIS', cx, 486, '500 26px "IBM Plex Mono", ui-monospace, monospace', '#9a978f', 10);
-    g.fillStyle = '#ff5a1f';
-    g.fillRect(cx - 28, 540, 18, 18);
-    g.fillStyle = '#eceae4';
-    g.fillRect(cx + 10, 540, 18, 18);
+    g.fillRect(cx - 66, 332, 132, 4);
+    // SKARVIS maker wordmark
+    spaced(g, 'SKARVIS', cx, 384, '500 26px "Space Grotesk", sans-serif', '#9a978f', 14);
   };
   draw();
   const t = new THREE.CanvasTexture(c);
