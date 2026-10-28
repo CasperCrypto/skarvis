@@ -26,7 +26,7 @@ from .classifier import classify
 from .detector import find_candidates, noise_floor_db, power_spectrum_db
 from .events import EventStore, make_event, make_position
 from .fusion import fuse_all
-from .policy import AlarmPolicy, AlarmState, Whitelist
+from .policy import AlarmPolicy, AlarmState, Whitelist, parse_iso
 
 DEFAULT_STORE = os.path.join(os.getcwd(), "czapla-data")
 
@@ -59,8 +59,13 @@ def process_detections(
     policy: AlarmPolicy | None = None,
     whitelist: Whitelist | None = None,
     baseline: "BaselineTracker | None" = None,
+    state: AlarmState | None = None,
 ) -> list[dict]:
     """Classify, decide, persist. Returns the alarm decisions in order.
+
+    Pass a long-lived AlarmState to keep cooldowns across calls (a running node,
+    a replay, the simulator); by default each call starts fresh. A detection
+    that carries ts_utc is judged and stored at that time instead of "now".
 
     If a baseline tracker is supplied, its occupancy history is consulted first:
     a frequency that has been present in nearly every recent scan is treated as
@@ -68,7 +73,7 @@ def process_detections(
     features look like. That is the only thing that separates a Wi-Fi access point
     from a drone video downlink in a single snapshot.
     """
-    state = AlarmState(policy or AlarmPolicy(), whitelist or Whitelist())
+    state = state or AlarmState(policy or AlarmPolicy(), whitelist or Whitelist())
     decisions: list[dict] = []
 
     for det in detections:
@@ -95,6 +100,7 @@ def process_detections(
                 freq_hop_count=det.get("freq_hop_count", 1),
             )
 
+        ts_utc = det.get("ts_utc")
         decision = state.evaluate(
             {
                 "freq_hz": det["freq_hz"],
@@ -103,6 +109,7 @@ def process_detections(
                 "classification": verdict["label"],
             },
             node_id=det.get("node_id", "unknown"),
+            when=parse_iso(ts_utc) if ts_utc else None,
         )
         event = make_event(
             node_id=det.get("node_id", "unknown"),
@@ -116,6 +123,7 @@ def process_detections(
             node_position=det.get("node_position"),
             evidence=det.get("evidence", {}),
             alarm=bool(decision["alarm"]),
+            ts_utc=ts_utc,
             extra={
                 "classifier": verdict["version"],
                 "classifier_score": verdict["score"],

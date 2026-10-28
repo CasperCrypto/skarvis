@@ -84,6 +84,19 @@ Company registration, FENG/STEP (Nov 2026 window), a Norwegian partner for POLNO
 (17 Dec 2026), EDF SME 2027 as a software partner in a consortium. Detail in
 `research/funding.md`.
 
+## Parallel tracks added 2026-10-28 (see `product/portfolio.md`)
+
+They do not change the order above. HERMES phase 1 is still the next spend.
+
+| Track | Now | Gate before money goes in |
+|---|---|---|
+| Trainer (simulator + operator console) | Built, software only, USD 0. Use it in buyer conversations and to test the pipeline. | v1 only after a security officer who is not Casper runs a drill unaided |
+| Ground line (people / animals / vehicles) | Classifier, policy and schema built and tested on synthetic data. No hardware. | HERMES phase 1 passed **and** a buyer asks for ground sensing. Then a passive bench kit and tests T-G1 to T-G5 (`product/perimeter.md`) |
+
+Kill criterion for the ground line: if T-G3 (7 nights unattended) shows the
+two-sensor rule does not cut nuisance alarms against the site's own camera
+analytics, stop and sell integration only.
+
 ## Timeline reality check
 
 - Phase 0: days, free.

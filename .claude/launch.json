@@ -12,6 +12,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8770", "--bind", "127.0.0.1"],
       "port": 8770
+    },
+    {
+      "name": "skarvis-trainer",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8775", "--bind", "127.0.0.1", "--directory", "web/sim"],
+      "port": 8775
     }
   ]
 }

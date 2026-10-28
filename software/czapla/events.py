@@ -1,9 +1,9 @@
 """Event schema, durable event store, and evidence blobs.
 
 Does:
-    Validates, creates and persists detection and position records as JSONL, and
-    writes evidence files next to them. Append-only: an incident record that can be
-    edited after the fact is worthless as evidence.
+    Validates, creates and persists detection, position and ground-object
+    records as JSONL, and writes evidence files next to them. Append-only: an
+    incident record that can be edited after the fact is worthless as evidence.
 
 Does NOT do:
     Any detection, classification or alarm logic. This is storage and schema.
@@ -16,7 +16,7 @@ import os
 import uuid
 from datetime import datetime, timezone
 
-from . import SCHEMA_EVENT, SCHEMA_POSITION
+from . import SCHEMA_EVENT, SCHEMA_GROUND, SCHEMA_POSITION
 
 EVENT_REQUIRED = (
     "schema",
@@ -39,6 +39,20 @@ POSITION_REQUIRED = (
     "lon",
     "confidence",
 )
+
+GROUND_REQUIRED = (
+    "schema",
+    "ground_id",
+    "ts_utc",
+    "node_id",
+    "track_id",
+    "sensors",
+    "classification",
+    "confidence",
+    "alarm",
+)
+
+GROUND_CLASSES = ("human", "animal", "vehicle", "unknown")
 
 
 class SchemaError(ValueError):
@@ -69,12 +83,17 @@ def make_event(
     width_hz: float | None = None,
     alarm: bool = False,
     extra: dict | None = None,
+    ts_utc: str | None = None,
 ) -> dict:
-    """Build a schema-valid detection event."""
+    """Build a schema-valid detection event.
+
+    ts_utc defaults to now; replay and simulation pass the time the detection
+    was actually made.
+    """
     event = {
         "schema": SCHEMA_EVENT,
         "event_id": new_id(),
-        "ts_utc": utc_iso(),
+        "ts_utc": ts_utc or utc_iso(),
         "node_id": node_id,
         "sensor": sensor,
         "freq_hz": float(freq_hz),
@@ -109,12 +128,13 @@ def make_position(
     alarm: bool = True,
     acknowledged: bool = False,
     extra: dict | None = None,
+    ts_utc: str | None = None,
 ) -> dict:
     """Build a schema-valid fused position record."""
     record = {
         "schema": SCHEMA_POSITION,
         "position_id": new_id(),
-        "ts_utc": utc_iso(),
+        "ts_utc": ts_utc or utc_iso(),
         "sources": list(sources),
         "lat": float(lat),
         "lon": float(lon),
@@ -130,6 +150,49 @@ def make_position(
             raise SchemaError(f"extra would overwrite reserved keys: {sorted(clashes)}")
         record.update(extra)
     validate_position(record)
+    return record
+
+
+def make_ground(
+    node_id: str,
+    track_id: str,
+    sensors: list[str],
+    classification: str,
+    confidence: float,
+    east_m: float | None = None,
+    north_m: float | None = None,
+    inside_perimeter: bool | None = None,
+    alarm: bool = False,
+    extra: dict | None = None,
+    ts_utc: str | None = None,
+) -> dict:
+    """Build a schema-valid ground-object record (person, animal, vehicle).
+
+    One record per notable change of a ground track: first seen, class changed,
+    alarm raised. Positions are metres east/north of the site reference point.
+    """
+    record = {
+        "schema": SCHEMA_GROUND,
+        "ground_id": new_id(),
+        "ts_utc": ts_utc or utc_iso(),
+        "node_id": node_id,
+        "track_id": track_id,
+        "sensors": sorted(set(sensors)),
+        "classification": classification,
+        "confidence": float(confidence),
+        "east_m": east_m,
+        "north_m": north_m,
+        "inside_perimeter": inside_perimeter,
+        "alarm": bool(alarm),
+        "acknowledged": False,
+    }
+    if extra:
+        reserved = set(record)
+        clashes = reserved & set(extra)
+        if clashes:
+            raise SchemaError(f"extra would overwrite reserved keys: {sorted(clashes)}")
+        record.update(extra)
+    validate_ground(record)
     return record
 
 
@@ -163,6 +226,21 @@ def validate_position(record: dict) -> None:
         raise SchemaError("lon out of range")
 
 
+def validate_ground(record: dict) -> None:
+    missing = [k for k in GROUND_REQUIRED if k not in record]
+    if missing:
+        raise SchemaError(f"ground record missing required fields: {missing}")
+    if record["schema"] != SCHEMA_GROUND:
+        raise SchemaError(f"wrong schema: {record['schema']!r}")
+    if not isinstance(record["sensors"], list) or not record["sensors"]:
+        raise SchemaError("sensors must be a non-empty list")
+    if record["classification"] not in GROUND_CLASSES:
+        raise SchemaError(f"bad ground classification: {record['classification']!r}")
+    conf = record["confidence"]
+    if not isinstance(conf, (int, float)) or not 0.0 <= float(conf) <= 1.0:
+        raise SchemaError("confidence must be a number in [0, 1]")
+
+
 class EventStore:
     """Append-only JSONL store plus an evidence directory.
 
@@ -182,6 +260,8 @@ class EventStore:
             validate_event(record)
         elif schema == SCHEMA_POSITION:
             validate_position(record)
+        elif schema == SCHEMA_GROUND:
+            validate_ground(record)
         else:
             raise SchemaError(f"unknown schema: {schema!r}")
         # One write call per record keeps lines from interleaving between processes.

@@ -85,3 +85,23 @@ python -m czapla.pipeline --demo            # print one simulated detection even
   Hermes' Polish copy in `web/index.html`. Keep the honesty rules: pilot list
   and letters of intent only, no prices, every spec labelled as a target until
   `hardware/results.md` has a measured number.
+
+## Update 2026-10-28 (added by Claude)
+
+- **Product family:** read `product/portfolio.md`. SKARVIS now has three lines
+  on one platform: HERMES (air), a ground line for people / animals / vehicles
+  (working name SKARVIS Teren, software only) and a simulator + operator
+  trainer (working name SKARVIS Trener, `software/czapla/sim.py`, `web/sim/`).
+- **We have no radar.** Do not write that HERMES or the KrakenSDR detects
+  people. Ground sensing needs new sensors; the receive-only rule still holds
+  for our hardware until Casper decides D1 (integrating a site's own radar
+  events is fine).
+- **Simulator numbers are assumptions, never performance.** Never quote them to
+  a buyer or in a grant application as detection results. Simulated records
+  carry `"synthetic": true`.
+- **No evasion, attack or countermeasure training** in the trainer, and nothing
+  public that shows where a real site's sensors are blind.
+- Ground alarms need two different sensor types (`GroundPolicy`). Phone / Wi-Fi
+  device detection is out until a written legal opinion exists (RODO).
+- Simulator findings F-1 to F-6 are in `product/portfolio.md`; F-1 is fixed,
+  F-2 and F-3 wait for the owner of `software/`.

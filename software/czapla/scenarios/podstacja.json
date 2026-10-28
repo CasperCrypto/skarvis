@@ -1,0 +1,116 @@
+{
+  "name": "Podstacja — scenariusz demonstracyjny",
+  "description_pl": "Fikcyjny obiekt (podstacja 300 × 200 m). Dwa węzły HERMES w narożnikach (Remote ID + namiernik KrakenSDR) i czujniki naziemne tylko przy południowym ogrodzeniu. Jedno ćwiczenie: lot autoryzowany, intruz z drona z Remote ID, dron FPV 868 MHz, dron światłowodowy, człowiek przechodzący przez ogrodzenie, zwierzęta i ruch za ogrodzeniem.",
+  "synthetic": true,
+  "seed": 7,
+  "start_utc": "2026-10-28T10:00:00Z",
+  "duration_s": 360,
+  "step_s": 1.0,
+  "assumptions_pl": [
+    "Zasięgi, poziomy sygnału (30 dB SNR w odległości 100 m) i błąd namiaru (8°) to założenia, nie pomiary. Zastąpią je wyniki testów T-2, T-3 i T-6.",
+    "Remote ID odbierany do 1000 m (założenie). Węzeł KrakenSDR słyszy tylko 24–1766 MHz: 433/868 MHz i 1,2 GHz.",
+    "Kamera termowizyjna: tania matryca 32×24 px, pole widzenia 55°×35° (MLX90640). Kształt sylwetki rozróżnialny tylko z bliska.",
+    "Radar naziemny (24/60 GHz) nadaje. Obecna zasada projektu to wyłącznie odbiór; użycie radaru wymaga decyzji D1.",
+    "Analityka kamery: 12% klatek ze zwierzęciem daje fałszywą „osobę” (założenie, odwzorowuje typowy problem kamer).",
+    "Ruch po odcinkach prostych ze stałą prędkością; brak terenu, odbić, pogody i zakłóceń. Przypisanie obserwacji do śladów korzysta z prawdy symulacji."
+  ],
+  "site": {
+    "ref_lat": 51.2631,
+    "ref_lon": 15.5672,
+    "perimeter": [[-150, -100], [150, -100], [150, 100], [-150, 100]],
+    "airspace_radius_m": 400,
+    "labels_pl": [
+      {"e": 0, "n": 0, "text": "Rozdzielnia"},
+      {"e": -5, "n": -106, "text": "Brama (otwarta)"},
+      {"e": 0, "n": -158, "text": "Droga dojazdowa"}
+    ]
+  },
+  "baseline": {
+    "window": 20,
+    "occupancy_threshold": 0.8,
+    "tolerance_mhz": 5.0,
+    "min_observations": 5,
+    "warmup_scans": 15,
+    "learn_during_run": false
+  },
+  "policy": {
+    "air": {"cooldown_bucket_mhz": 25.0},
+    "ground": {},
+    "ground_window_s": 8,
+    "incident_merge_s": 120
+  },
+  "whitelist": [
+    {"rid_serial": "SKV-INSP-0001", "comment": "Własny dron inspekcyjny obiektu (lot uzgodniony)"}
+  ],
+  "sensors": [
+    {"id": "hermes-01-rid", "node": "hermes-01", "type": "remote_id", "label_pl": "HERMES-01 · odbiornik Remote ID",
+     "east": -140, "north": -90, "alt_m": 15, "range_m": 1000, "period_s": 1,
+     "ref_snr_db": 35, "ref_dist_m": 100, "position_sigma_m": 3},
+    {"id": "hermes-01-df", "node": "hermes-01", "type": "rf_df", "label_pl": "HERMES-01 · namiernik KrakenSDR",
+     "east": -140, "north": -90, "alt_m": 15, "bands_mhz": [[430, 440], [860, 875], [1060, 1380]],
+     "range_m": 3000, "period_s": 2, "ref_snr_db": 30, "ref_dist_m": 100, "min_snr_db": 6,
+     "snr_sigma_db": 2, "bearing_sigma_deg": 8},
+    {"id": "hermes-02-rid", "node": "hermes-02", "type": "remote_id", "label_pl": "HERMES-02 · odbiornik Remote ID",
+     "east": 140, "north": 90, "alt_m": 15, "range_m": 1000, "period_s": 1,
+     "ref_snr_db": 35, "ref_dist_m": 100, "position_sigma_m": 3},
+    {"id": "hermes-02-df", "node": "hermes-02", "type": "rf_df", "label_pl": "HERMES-02 · namiernik KrakenSDR",
+     "east": 140, "north": 90, "alt_m": 15, "bands_mhz": [[430, 440], [860, 875], [1060, 1380]],
+     "range_m": 3000, "period_s": 2, "ref_snr_db": 30, "ref_dist_m": 100, "min_snr_db": 6,
+     "snr_sigma_db": 2, "bearing_sigma_deg": 8},
+    {"id": "term-s", "node": "straz-poludnie", "type": "thermal", "label_pl": "Termowizja (MLX90640, 55°)",
+     "east": 30, "north": -85, "heading_deg": 180, "fov_deg": 55, "range_m": 35,
+     "size_sigma": 0.1, "position_sigma_m": 1.0, "period_s": 1},
+    {"id": "radar-s", "node": "straz-poludnie", "type": "radar_mmwave", "label_pl": "Radar naziemny (wymaga decyzji D1)",
+     "requires_decision": "D1",
+     "east": -20, "north": -100, "heading_deg": 70, "fov_deg": 120, "range_m": 70,
+     "p_detect": 0.9, "position_sigma_m": 1.5, "period_s": 1},
+    {"id": "pir-s", "node": "straz-poludnie", "type": "pir", "label_pl": "Czujka PIR przy bramie",
+     "east": 25, "north": -96, "heading_deg": 180, "fov_deg": 90, "range_m": 12,
+     "p_detect": 0.8, "position_sigma_m": 3.0, "period_s": 1},
+    {"id": "kam-s", "node": "straz-poludnie", "type": "camera_ai", "label_pl": "Kamera z analityką (istniejąca)",
+     "east": -60, "north": -100, "heading_deg": 80, "fov_deg": 75, "range_m": 120,
+     "p_detect": 0.9, "false_person_rate": 0.12, "position_sigma_m": 2.0, "period_s": 1}
+  ],
+  "emitters": [
+    {"id": "scada-433", "label_pl": "Telemetria SCADA obiektu (433,92 MHz)", "east": 60, "north": 40, "alt_m": 8,
+     "freq_mhz": 433.92, "width_mhz": 0.025, "hop_count": 1}
+  ],
+  "actors": [
+    {"id": "dron-inspekcja", "kind": "drone", "label_pl": "Dron inspekcyjny obiektu (autoryzowany, Remote ID)",
+     "authorised": true, "remote_id": "SKV-INSP-0001",
+     "links": [{"freq_mhz": 2437, "width_mhz": 10}],
+     "start_s": 5, "altitude_m": 40, "speed_mps": 6,
+     "path": [[-100, -50], [100, -50], [100, 50], [-100, 50], [-100, -50]]},
+    {"id": "lis", "kind": "animal", "label_pl": "Lis (przechodzi pod ogrodzeniem)",
+     "start_s": 30, "speed_mps": 1.5, "gait_hz": 3.4, "height_m": 0.4, "length_m": 0.9, "width_m": 0.25,
+     "path": [[70, -140], [33, -104], [30, -95], [5, -70], [-40, -40]]},
+    {"id": "dron-rid", "kind": "drone", "label_pl": "Dron konsumencki z Remote ID (nieuzgodniony)",
+     "remote_id": "SIM-RID-0042",
+     "links": [{"freq_mhz": 2437, "width_mhz": 10}],
+     "start_s": 40, "altitude_m": 90, "speed_mps": 9,
+     "path": [[-750, 520], [-40, 30], [700, -450]]},
+    {"id": "spacerowicz", "kind": "human", "label_pl": "Spacerowicz za ogrodzeniem",
+     "start_s": 60, "speed_mps": 1.4, "gait_hz": 1.8, "height_m": 1.72, "length_m": 0.35, "width_m": 0.5,
+     "path": [[-160, -122], [160, -122]]},
+    {"id": "samochod", "kind": "vehicle", "label_pl": "Samochód na drodze dojazdowej",
+     "start_s": 90, "speed_mps": 11, "height_m": 1.5, "length_m": 4.4, "width_m": 1.8,
+     "path": [[200, -150], [-200, -150]]},
+    {"id": "fpv-868", "kind": "drone", "label_pl": "Dron FPV dalekiego zasięgu (ELRS 868 MHz + wideo 1,2 GHz), bez Remote ID",
+     "links": [
+       {"freq_mhz": 866.5, "hop_mhz": 3.0, "width_mhz": 0.5, "hop_count": 4},
+       {"freq_mhz": 1240, "width_mhz": 18, "hop_count": 1}
+     ],
+     "start_s": 120, "altitude_m": 60, "speed_mps": 18, "hold_s": 25,
+     "path": [[1700, 650], [60, 10]]},
+    {"id": "intruz", "kind": "human", "label_pl": "Intruz przechodzący przez ogrodzenie",
+     "start_s": 150, "speed_mps": 1.3, "gait_hz": 1.9, "height_m": 1.78, "length_m": 0.35, "width_m": 0.5,
+     "path": [[28, -175], [27, -104], [24, -96], [10, -60], [-20, -20], [-45, 30]]},
+    {"id": "sarna", "kind": "animal", "label_pl": "Sarna (wchodzi przez otwartą bramę, poza polem termowizji)",
+     "start_s": 200, "speed_mps": 1.6, "gait_hz": 2.0, "height_m": 1.1, "length_m": 1.2, "width_m": 0.35,
+     "path": [[-5, -170], [-5, -101], [-12, -70], [-60, -10]]},
+    {"id": "fpv-swiatlowod", "kind": "drone", "label_pl": "Dron FPV sterowany światłowodem (brak emisji radiowej)",
+     "fibre_optic": true, "links": [],
+     "start_s": 250, "altitude_m": 25, "speed_mps": 15, "hold_s": 15,
+     "path": [[-900, -850], [-30, -20]]}
+  ]
+}

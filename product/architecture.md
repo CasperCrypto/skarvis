@@ -87,6 +87,35 @@ Fusion adds a second record type when two nodes agree:
 }
 ```
 
+Ground objects (people, animals, vehicles; added 2026-10-28, see
+`product/perimeter.md`) use a third record type. Positions are metres east and
+north of the site reference point:
+
+```json
+{
+  "schema": "czapla.ground/1",
+  "ground_id": "...",
+  "ts_utc": "...",
+  "node_id": "straz-poludnie",
+  "track_id": "trk-004",
+  "sensors": ["camera_ai", "radar_mmwave", "thermal"],
+  "classification": "human",
+  "confidence": 0.86,
+  "east_m": 25.8, "north_m": -99.3,
+  "inside_perimeter": true,
+  "alarm": true,
+  "acknowledged": false
+}
+```
+
+`classification` is one of `human`, `animal`, `vehicle`, `unknown`. Records made
+by the simulator carry `"synthetic": true` and `"sim_scenario"`, so they can
+never be mistaken for a detection.
+
+Other additive fields since v1: `sensor: "remote_id"` events carry `rid_serial`
+and `rid_position`; a whitelist entry may name a `rid_serial` instead of a
+frequency.
+
 ## Software modules
 
 | Module | Does | Does NOT do |
@@ -102,6 +131,8 @@ Fusion adds a second record type when two nodes agree:
 | `czapla/report.py` | Polish incident report for the site's protection file | Send anything |
 | `czapla/pipeline.py` | Wire it together; `--demo` runs a simulated detection | Own any of the above |
 | `czapla/node_rx.py` | Receive node JSON over LAN, validate schema | Capture RF itself |
+| `czapla/ground.py` | Classify a ground object (human / animal / vehicle) from several sensor types | Detect, track, alarm, identify people |
+| `czapla/sim.py` | Scenario simulator: synthetic actors and sensor reports through the real pipeline, scorecard, run file for `web/sim` | Measure anything; model attack, evasion or countermeasures |
 
 ## Dependency policy
 

@@ -23,6 +23,16 @@ class TestBandAffinity(unittest.TestCase):
     def test_on_centre(self):
         self.assertAlmostEqual(band_affinity_mhz(2437.0), 1.0, places=6)
 
+    def test_kraken_bands_count_as_drone_bands(self):
+        # The KrakenSDR listens at 433/868 MHz and 1.2 GHz, not 2.4 GHz.
+        for mhz in (433.92, 868.0, 1200.0, 1280.0):
+            self.assertAlmostEqual(band_affinity_mhz(mhz), 1.0, places=6, msg=str(mhz))
+
+    def test_sub_ghz_windows_stay_narrow(self):
+        # Just outside the 863-870 MHz SRD band is mobile-phone territory.
+        self.assertAlmostEqual(band_affinity_mhz(860.0), 0.0, places=6)
+        self.assertAlmostEqual(band_affinity_mhz(875.0), 0.0, places=6)
+
     def test_far_away(self):
         self.assertAlmostEqual(band_affinity_mhz(1000.0), 0.0, places=6)
 
@@ -186,6 +196,57 @@ class TestAlarmPolicy(unittest.TestCase):
         b = state.evaluate(self._det(), node_id="n2", when=t0 + timedelta(seconds=5))
         self.assertTrue(a["alarm"])
         self.assertTrue(b["alarm"])
+
+
+class TestRemoteIdAndHopping(unittest.TestCase):
+    """Additions for the simulator findings of 2026-10-28."""
+
+    T0 = datetime(2026, 10, 28, 12, 0, tzinfo=timezone.utc)
+
+    def _det(self, **over):
+        base = {
+            "freq_hz": 868e6,
+            "snr_db": 20.0,
+            "confidence": 0.9,
+            "classification": "drone_like",
+        }
+        base.update(over)
+        return base
+
+    def test_serial_whitelist_matches_only_that_serial(self):
+        wl = Whitelist([{"rid_serial": "SKV-INSP-01", "comment": "own inspection drone"}])
+        self.assertIsNotNone(wl.matches(2437e6, serial="SKV-INSP-01"))
+        self.assertIsNone(wl.matches(2437e6, serial="OTHER"))
+        self.assertIsNone(wl.matches(2437e6))
+
+    def test_serial_entry_is_not_a_frequency_whitelist(self):
+        state = AlarmState(AlarmPolicy(), Whitelist([{"rid_serial": "SKV-INSP-01"}]))
+        decision = state.evaluate(self._det(freq_hz=2437e6), node_id="n1", when=self.T0)
+        self.assertTrue(decision["alarm"])
+
+    def test_default_bucket_realarms_on_a_hopping_link(self):
+        # Kept as a test on purpose: this is the v1 default's known weakness.
+        state = AlarmState(AlarmPolicy())
+        a = state.evaluate(self._det(freq_hz=864.2e6), "n1", when=self.T0)
+        b = state.evaluate(self._det(freq_hz=868.9e6), "n1", when=self.T0 + timedelta(seconds=2))
+        self.assertTrue(a["alarm"])
+        self.assertTrue(b["alarm"])
+
+    def test_wide_bucket_holds_one_alarm_per_hopping_link(self):
+        state = AlarmState(AlarmPolicy(cooldown_bucket_mhz=25.0))
+        a = state.evaluate(self._det(freq_hz=864.2e6), "n1", when=self.T0)
+        b = state.evaluate(self._det(freq_hz=868.9e6), "n1", when=self.T0 + timedelta(seconds=2))
+        self.assertTrue(a["alarm"])
+        self.assertFalse(b["alarm"])
+
+    def test_remote_id_cooldown_follows_the_serial(self):
+        state = AlarmState(AlarmPolicy())
+        a = state.evaluate(self._det(freq_hz=2437e6, rid_serial="X1"), "n1", when=self.T0)
+        b = state.evaluate(
+            self._det(freq_hz=2437e6, rid_serial="X2"), "n1", when=self.T0 + timedelta(seconds=2)
+        )
+        self.assertTrue(a["alarm"])
+        self.assertTrue(b["alarm"], "a second drone on the same channel is a second alarm")
 
 
 if __name__ == "__main__":
