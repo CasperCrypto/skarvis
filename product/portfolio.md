@@ -26,10 +26,10 @@ number are in `research/sources.md`; estimates are marked.
 4. **A full flight simulator for learning to fly drones is not where we win.**
    Good ones cost about USD 10-20 (Liftoff, VelociDrone, DRL Simulator) and the
    open-source autopilots ship their own simulators (PX4 and ArduPilot SITL).
-   We can integrate those later; we should not rebuild them. Casper asked for
-   one anyway on 2026-10-29 (a realistic 3D lab to build, fly and test drones):
-   the plan that builds on those tools instead of rebuilding them is in
-   `product/simulator.md`, "Flight lab", decision D6 below.
+   We can integrate those later; we should not rebuild them. Casper decided
+   on 2026-10-29 to build one anyway, as a **separate project outside
+   SKARVIS** (a hyper-realistic 3D space in Unreal Engine 5, 1×1 km free and
+   10×10 km paid, with a drone builder and model upload): `ventures/drone-world.md`.
 
 Status does not change: no hardware ordered, no field test, no customer, no
 company. Everything built on 2026-10-28 is software tested on synthetic data.
@@ -169,15 +169,18 @@ Nothing about the ground line or the trainer goes on the public site yet.
 | D3 | Trainer free or paid? | Free demo for site security staff; paid work is a scenario built from a customer's real site and procedure. No public release with real sensor models. |
 | D4 | Detect phones and Wi-Fi devices? | **Not without a written legal opinion.** MAC addresses with location are personal data per EU regulators. |
 | D5 | Order of work. | HERMES phase 1 first, unchanged. Trainer: done for now, use it in conversations. Ground: software done; buy ground hardware only after HERMES phase 1 passes **and** a buyer asks for it. |
-| D6 | Flight lab: start a browser prototype (three.js, simplified physics, parts builder, glTF upload) or go for the Unreal Engine + real-autopilot path? | Browser prototype first, then real firmware (ArduPilot SITL), Unreal only with a budget and a customer. Talk to five flight schools before going past the prototype. |
+| D6 | Flight lab: browser prototype or Unreal Engine path? | **Decided by Casper 2026-10-29:** Unreal Engine 5, as a separate project outside SKARVIS. Plan and milestones in `ventures/drone-world.md`. |
 
-## Considered and not adopted
+## Moved to separate projects (2026-10-29)
 
-- **Drone-carried camouflage canopy** ("Air Cover" concept image, 2026-10-29).
-  Hides a military vehicle from overhead cameras and radar. Not adopted: it is
-  the opposite of our job (we help a site see; it helps an army not be seen),
-  it is likely controlled military equipment, the physics is hard (a canopy
-  big enough for a truck is a sail, and the drone carrying it is loud, warm and
-  transmits radio, so HERMES would detect it), and it needs money and test
-  ranges we do not have. Adjacent idea worth keeping: a receive-only check of
-  what radio signals a site leaks to anyone listening.
+- **Drone world** (3D space to build, fly and test drones):
+  `ventures/drone-world.md`.
+- **Canopy drones** (four drones holding a sheet). First seen as a military
+  camouflage concept ("Air Cover" image) and not adopted in that form:
+  hiding military equipment from reconnaissance is licensed military
+  equipment and the opposite of our business. Casper then chose to pursue the
+  **civilian** version (VIP privacy, accident scenes, shade) as a separate
+  project: `ventures/canopy.md`. Simulate first, then buyer conversations,
+  then a small indoor prototype.
+- Adjacent idea kept on file: a receive-only check of what radio signals a
+  site leaks to anyone listening.

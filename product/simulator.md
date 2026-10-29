@@ -103,75 +103,10 @@ the owner of `software/` (Hermes):
 | v2 | Measured sensor parameters from `hardware/results.md` replace assumptions; site-specific scenarios for pilot customers | HERMES phase 2 done |
 | v3 | Realistic drone trajectories from PX4 or ArduPilot SITL (free, open source); optional flight mode with a USB transmitter for site staff | A paying customer asks for it |
 
-## Flight lab (requested 2026-10-29, not started)
+## Flight lab: moved out of SKARVIS (2026-10-29)
 
-What Casper asked for: a realistic 3D environment where people pilot drones,
-upload drone models, build drones from parts and test them. This is a
-different product from the trainer above (which drills the people who protect
-a site). Nothing of it is built. This section is the plan and the decision
-(D6 in `product/portfolio.md`).
-
-### What "hyper-realistic" actually takes
-
-- **Looks are the easy part to buy.** Unreal Engine 5 gives photoreal scenes
-  on a desktop PC with a gaming graphics card; three.js (already used on our
-  site) gives good-looking scenes in any browser, phone included.
-- **Flight is the hard part.** Thrust and torque per motor and propeller,
-  battery voltage sag, drag, wind, and above all the flight controller. Testing
-  a drone means testing its real firmware, not our imitation of it.
-- **So we do not write a flight engine.** Run the real open-source autopilot
-  (ArduPilot or PX4) in software-in-the-loop, let an existing physics backend
-  fly it, and draw the result in Unreal or three.js. ArduPilot SITL already
-  accepts external physics through a JSON interface; PteroSim is an Unreal
-  Engine 5 simulator built on exactly that. PX4 ships with Gazebo. Microsoft's
-  AirSim is archived; its successor is Project AirSim. Sources in
-  `research/sources.md`.
-
-### Options
-
-| Path | Realism | Runs on | Effort (estimate) | Good for |
-|---|---|---|---|---|
-| three.js browser lab, our own simplified quadcopter physics | Looks good, flies like a game | Any browser | Weeks for a solid prototype | Demo, the builder UI, public education |
-| ArduPilot SITL + our browser 3D view | Real firmware behaviour, simple graphics | PC (Linux or WSL) + browser | Weeks to a few months | Engineering test bench |
-| ArduPilot/PX4 SITL + Unreal Engine 5 (PteroSim, Project AirSim) | Real firmware and photoreal scenes | Windows PC with a gaming GPU | Months for at least one experienced Unreal developer | The "hyper-realistic" version |
-| PX4 + Gazebo as shipped | Real firmware, robotics-grade physics, plain graphics | Linux | Free, documented | Research and automated tests |
-
-All effort figures are estimates, not quotes.
-
-### "Upload a model" and "build a drone" are two different things
-
-1. **The look**: a glTF/GLB 3D file. Both three.js and Unreal import it.
-2. **The flight properties**: mass, frame size, motors (KV), propellers (size,
-   pitch), battery (cells, capacity). The builder turns those into
-   thrust-to-weight, hover throttle and an estimated flight time, and writes
-   autopilot parameters for SITL. The thrust numbers need a real data source
-   (motor and propeller test tables); until we have one, every computed figure
-   is labelled an estimate.
-
-### Lines the flight lab does not cross
-
-- No payload release, weapons, strike or interceptor (CASPER) content.
-- None of our detection-sensor models in anything public: a lab where you
-  learn to fly around a site's sensors teaches evasion.
-- Flight-training content follows the EU open-category rules; it does not
-  replace the ULC exam or the operator's legal duties.
-
-### Market reality
-
-Free (Gazebo, SITL) and cheap (Liftoff, VelociDrone, DRL Simulator) tools
-already exist. A Polish flight lab would have to win on something they lack,
-for example Polish language, a parts builder with test reports, or exercises
-matched to the exams schools teach for. That is unproven. **Gate before
-anything beyond a prototype:** five conversations with flight schools or
-school programmes, and at least one that would use or pay for it.
-
-### Recommended path
-
-| Stage | What | Gate |
-|---|---|---|
-| 1 | Browser lab in three.js: fly with keyboard or gamepad, physically based but simplified quadcopter model, parts builder with computed performance, glTF upload for the look, a test course with logged results. Labelled "not a certified simulator". Can be built in this repository. | Casper decides D6 |
-| 2 | Connect the stage-1 viewer to ArduPilot SITL, so the drone flies on real firmware | Stage 1 used by someone outside the team |
-| 3 | Unreal Engine 5 scenes | A budget and an Unreal developer; a customer who needs photoreal |
-
-Unreal Engine cannot be run in the cloud session where this plan was written
-(no Windows PC, no graphics card); stages 1 and 2 can be built there.
+Casper decided the 3D environment to build, fly and test drones is a
+separate project, not part of SKARVIS and not linked to its sensors, and
+that it is built in Unreal Engine 5 rather than as a browser prototype. Its
+plan is in `ventures/drone-world.md`. The trainer above stays what it is:
+alarm-handling drills for the people who protect a site.

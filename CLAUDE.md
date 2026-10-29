@@ -107,5 +107,9 @@ python -m czapla.pipeline --demo            # print one simulated detection even
   F-2 and F-3 wait for the owner of `software/`.
 - 2026-10-29: the public site has a platform section (HERMES / Teren / Trener,
   each with its real status tag) and the trainer moved to `web/site/trener/`.
-  The flight lab (build, fly, test drones in 3D) is a plan in
-  `product/simulator.md` waiting for decision D6; it is not on the site.
+  The flight lab (build, fly, test drones in 3D) is not on the site.
+- 2026-10-29, later: the flight lab and the canopy drones are **separate
+  projects, not SKARVIS products**, kept in `ventures/` until they get their
+  own repositories. Drone world = Unreal Engine 5 (Casper's decision). Canopy
+  = civilian only (VIP privacy, accident scenes); military concealment stays
+  excluded. Neither goes on the SKARVIS site.

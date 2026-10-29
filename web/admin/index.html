@@ -90,7 +90,7 @@
       <!-- PRODUCTS -->
       <section class="block" id="products" data-sec="Products">
         <h2>Products</h2>
-        <p class="sub">One platform, three lines, one event log and one Polish report. Air comes first. Details and reasoning in <span class="mono">product/portfolio.md</span>.</p>
+        <p class="sub">SKARVIS: one platform, three lines, one event log and one Polish report. Air comes first. Details and reasoning in <span class="mono">product/portfolio.md</span>. Separate projects (drone world, canopy drones) are shown last.</p>
         <div class="banner">
           <i class="ph-light ph-warning" aria-hidden="true"></i>
           <div><strong>Nothing here is measured.</strong> We have no radar: HERMES cannot see people. The ground line is software tested on synthetic data with no sensor chosen. Simulator numbers are the scenario's assumptions, never performance, and never go into a pitch or a grant application as results.</div>
@@ -99,7 +99,8 @@
           <a class="card" href="../../product/spec-v1.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-broadcast"></i><h3>HERMES · air</h3></div><p>Passive drone detection: Remote ID + KrakenSDR direction finding (433/868 MHz, 1.2 GHz).</p><span class="meta">software built · hardware not ordered</span></a>
           <a class="card" href="../../product/perimeter.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-person-simple-walk"></i><h3>SKARVIS Teren · ground</h3></div><p>Person / animal / vehicle. Alarms only inside the fence and only when two sensor types agree.</p><span class="meta">software only · no sensor chosen</span></a>
           <a class="card" href="../site/trener/" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-graduation-cap"></i><h3>SKARVIS Trener · drills</h3></div><p>Scenario simulator + Polish operator console. Opens the demo exercise.</p><span class="meta">works · synthetic data</span></a>
-          <a class="card" href="../../product/simulator.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-airplane-tilt"></i><h3>Flight lab · idea</h3></div><p>Realistic 3D environment to build, fly and test drones (asked 2026-10-29). Plan only.</p><span class="meta">not started · decision D6</span></a>
+          <a class="card" href="../../ventures/drone-world.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-airplane-tilt"></i><h3>Drone world · separate project</h3></div><p>Hyper-realistic 3D space to build, fly and test drones. Unreal Engine 5; 1×1 km free, 10×10 km paid.</p><span class="meta">plan · not SKARVIS</span></a>
+          <a class="card" href="../../ventures/canopy.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-umbrella"></i><h3>Canopy drones · separate project</h3></div><p>Four drones holding a sheet: VIP privacy, accident scenes, shade. Civilian only.</p><span class="meta">concept · simulate first</span></a>
         </div>
 
         <h3 class="label" style="margin:28px 0 8px">What the simulator found in our own pipeline</h3>
@@ -127,12 +128,12 @@
               <tr><td class="mono">D3</td><td>Trainer free or paid?</td><td>Free demo for site staff; paid = a scenario built from a customer's real site.</td></tr>
               <tr><td class="mono">D4</td><td>Detect phones / Wi-Fi devices?</td><td>Not without a written legal opinion (RODO).</td></tr>
               <tr><td class="mono">D5</td><td>Order of work</td><td>HERMES phase 1 first. Ground hardware only after it passes and a buyer asks.</td></tr>
-              <tr><td class="mono">D6</td><td>Flight lab: browser prototype or Unreal Engine path?</td><td>See <span class="mono">product/simulator.md</span>, "Flight lab". Waiting for Casper.</td></tr>
+              <tr><td class="mono">D6</td><td>Flight lab: browser prototype or Unreal Engine path?</td><td><span class="pill pill-ok">decided</span> Unreal Engine 5, separate project: <span class="mono">ventures/drone-world.md</span>.</td></tr>
             </tbody>
           </table>
         </div>
         <ul class="plain" style="margin-top:20px">
-          <li><strong>Considered, not adopted (2026-10-29):</strong> a drone-carried camouflage canopy ("Air Cover" concept). Military concealment, opposite of our job, likely controlled military goods, hard physics. Adjacent idea worth keeping: a receive-only radio-signature check of a site.</li>
+          <li><strong>Separate projects (2026-10-29):</strong> the drone world and the canopy drones are not SKARVIS products and live in <span class="mono">ventures/</span> until they get their own repositories. The canopy is civilian only; military concealment stays excluded.</li>
         </ul>
       </section>
 
@@ -454,7 +455,8 @@ python -m czapla.sim --no-store --out ../web/site/trener/runs/podstacja.js   <sp
           <a class="card" href="../../research/legal-pl.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-scales"></i><h3>Legal (PL)</h3></div><p>What's allowed, who may act.</p><span class="meta">research</span></a>
           <a class="card" href="../../product/portfolio.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-squares-four"></i><h3>Product family</h3></div><p>Air, ground, trainer; findings and decisions.</p><span class="meta">product</span></a>
           <a class="card" href="../../product/perimeter.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-person-simple-walk"></i><h3>Ground line</h3></div><p>Sensor options, classifier, tests T-G1 to T-G5.</p><span class="meta">product</span></a>
-          <a class="card" href="../../product/simulator.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-graduation-cap"></i><h3>Simulator, trainer, flight lab</h3></div><p>Assumptions, findings, the flight-lab plan.</p><span class="meta">product</span></a>
+          <a class="card" href="../../product/simulator.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-graduation-cap"></i><h3>Simulator and trainer</h3></div><p>Assumptions and findings.</p><span class="meta">product</span></a>
+          <a class="card" href="../../ventures/README.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-rocket-launch"></i><h3>Ventures</h3></div><p>Drone world and canopy drones: separate projects, plans only.</p><span class="meta">ventures</span></a>
         </div>
       </section>
 

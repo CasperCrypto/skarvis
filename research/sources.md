@@ -175,3 +175,13 @@ unless noted. If you add a claim, add its source here in the same commit.
 - https://developers.cloudflare.com/pages/get-started/guide/ — Cloudflare Pages deploys public and private GitHub repositories after authorisation; build output directory is relative to the repository root.
 - https://revdoku.com/blog/how-to-password-protect-a-cloudflare-pages-site/ and https://israynotarray.com/en/misc/2026/05/13/cloudflare-pages-preview-urls-stay-forever-lock-with-access/
   — Cloudflare Access in front of a Pages project, one-time PIN by email, wildcard entry for preview URLs; free tier reported as up to 50 users (third-party blogs, not Cloudflare's pricing page).
+
+## Drone world and canopy drones (ventures/) — retrieved 2026-10-29
+- https://www.unrealengine.com/en-US/blog/we-are-updating-unreal-engine-twinmotion-and-realitycapture-pricing-in-late-april
+  — Epic: games pay 5 % royalty only above USD 1 million gross revenue; non-game applications licensed to third parties and running on Unreal Engine code also pay royalties; seat-based licence for non-game companies above USD 1 million revenue (reported at USD 1,850 per seat per year by https://www.engadget.com/epic-will-charge-non-game-developers-1850-per-seat-to-use-unreal-engine-162015997.html; check current terms).
+- https://cesium.com/learn/unreal/unreal-photorealistic-3d-tiles/ and https://cesium.com/blog/2023/11/02/cesium-for-unreal-2-0
+  — Cesium for Unreal: free, open-source plugin; Google Photorealistic 3D Tiles stream through a free Cesium ion account with an access token; used for flight simulators. Google's commercial terms not checked.
+- https://manual.edgetx.org/color-radios/model-settings/model-setup/usb-joystick and https://manual.edgetx.org/edgetx-how-to/joystick-mapping-information-for-game-developers
+  — EdgeTX radios: "USB Joystick (HID)" mode, no driver, seen as a generic joystick by simulators; USB ID 1209:4F54.
+- https://skybrary.aero/articles/regulation-2019947-rules-and-procedures-unmanned-aircraft and https://www.legislation.gov.uk/eur/2019/947/annex/data.pdf
+  — Regulation (EU) 2019/947: open category must not fly over assemblies of people; specific category needs an operational authorisation based on a risk assessment; over assemblies of people with a characteristic dimension of 3 m or more → certified category. Secondary and UK-hosted copies; confirm on EUR-Lex.
