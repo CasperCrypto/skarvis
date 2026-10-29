@@ -108,6 +108,6 @@ the owner of `software/` (Hermes):
 Casper decided the 3D environment to build, fly and test drones is a
 separate project, not part of SKARVIS and not linked to its sensors. It is
 open source, browser first (three.js) with an Unreal Engine 5 client later on
-the same physics. Its plan is in `ventures/drone-world.md` and its code in
-`ventures/drone-world/`. The trainer above stays what it is:
+the same physics. Its plan is in `ventures/drone-world.md` and its code in the public repository
+https://github.com/CasperCrypto/drone-world. The trainer above stays what it is:
 alarm-handling drills for the people who protect a site.
