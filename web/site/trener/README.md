@@ -13,7 +13,7 @@ file says so, the page says so on every screen, and the debrief repeats it.
 
 ## Open it
 
-Double-click `web/preview-sim.bat` on Windows, or open `web/sim/index.html` in
+Double-click `web/preview-sim.bat` on Windows, or open `web/site/trener/index.html` in
 any browser. Other runs: button "Wczytaj przebieg…" accepts a `.json` or `.js`
 run file.
 
@@ -21,7 +21,7 @@ run file.
 
 ```bash
 cd software
-python -m czapla.sim --no-store --out ../web/sim/runs/podstacja.js
+python -m czapla.sim --no-store --out ../web/site/trener/runs/podstacja.js
 ```
 
 `--out x.js` writes a file the page loads with a plain `<script>` tag (works

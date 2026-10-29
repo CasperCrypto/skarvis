@@ -49,7 +49,7 @@ building them turns this into an arms business. Detection and evidence only.
 | `web/index.html` | First landing page draft (Hermes, CZAPLA name, kept for reference) |
 | `web/site/` | Public SKARVIS site, Polish + English, interactive 3D HERMES node, pilot-list form (see `web/site/README.md`) |
 | `web/supabase/` | SQL for the pilot-list table the site writes to |
-| `web/sim/` | SKARVIS Trener: Polish operator training console playing simulator runs (synthetic data only) |
+| `web/site/trener/` | SKARVIS Trener: Polish operator training console playing simulator runs (synthetic data only), linked from the site |
 | `business/model.md` | Pricing and unit economics |
 | `business/outreach/` | Verified target lists, built but NOT sent |
 
@@ -62,7 +62,8 @@ building them turns this into an arms business. Detection and evidence only.
 | Field tests | **None run.** The only verification is against simulated signals. |
 | Customer / pilot | **None.** No contact has been made. |
 | Company | **Does not exist.** No sp. z o.o. registered. |
-| Landing page | `web/site/`, SKARVIS, Polish + English, built 2026-10-22, not yet hosted. States the limitations; every spec labelled as a target. |
+| Landing page | `web/site/`, SKARVIS, Polish + English, built 2026-10-22, not yet hosted. States the limitations; every spec labelled as a target. Platform section (HERMES, Teren, Trener with their real status) and the trainer demo at `web/site/trener/` added 2026-10-29. |
+| Flight lab | **Plan only** (2026-10-29): realistic 3D lab to build, fly and test drones. `product/simulator.md`, decision D6. |
 | Ground line | **Software only** (2026-10-28): classifier, policy, schema, tested on synthetic data. No sensor chosen. |
 | Trainer | **Built** (2026-10-28): scenario simulator + Polish operator console. Synthetic data; its numbers are assumptions, not measurements. |
 

@@ -44,6 +44,7 @@
     <div class="side-brand"><b>SKARVIS</b><span>console</span></div>
     <nav data-nav>
       <a href="#overview" class="active"><i class="ph-light ph-gauge" aria-hidden="true"></i> Overview</a>
+      <a href="#products"><i class="ph-light ph-squares-four" aria-hidden="true"></i> Products</a>
       <a href="#buy"><i class="ph-light ph-shopping-cart-simple" aria-hidden="true"></i> Buy-list &amp; BOM</a>
       <a href="#drawings"><i class="ph-light ph-ruler" aria-hidden="true"></i> Technical drawings</a>
       <a href="#model"><i class="ph-light ph-cube" aria-hidden="true"></i> 3D model &amp; CAD</a>
@@ -64,7 +65,7 @@
       <h1 data-topbar-title>Overview</h1>
       <div class="right">
         <span class="pill pill-warn">Prototype</span>
-        <span class="pill">v1 · 2026-10-22</span>
+        <span class="pill">v1 · 2026-10-29</span>
       </div>
     </div>
 
@@ -73,17 +74,66 @@
       <!-- OVERVIEW -->
       <section class="block" id="overview" data-sec="Overview">
         <h2>Build console</h2>
-        <p class="sub">Everything for the SKARVIS / HERMES detection node in one place: what to buy, how it fits together, the drawings, the printable parts, the code and the docs.</p>
+        <p class="sub">Everything for the SKARVIS / HERMES detection node in one place: what to buy, how it fits together, the drawings, the printable parts, the code and the docs. The other product lines (ground, trainer, flight lab idea) are under Products.</p>
         <div class="banner">
           <i class="ph-light ph-warning" aria-hidden="true"></i>
           <div><strong>Honest status.</strong> Nothing has been ordered or built. The software runs on simulated signals only. No field test has run, no customer or pilot exists. Every number below is a published price or a target, labelled as such — not a measured result.</div>
         </div>
         <div class="stats">
-          <div class="stat"><div class="k">Software</div><div class="v">110<small> tests</small></div><div class="d">Green, stdlib-only, runs on simulated data</div></div>
+          <div class="stat"><div class="k">Software</div><div class="v">163<small> tests</small></div><div class="d">Green, stdlib-only, runs on simulated data</div></div>
           <div class="stat"><div class="k">One node, landed</div><div class="v">~2.3<small>k USD</small></div><div class="d">Core ~USD 1,853 + shipping, VAT (est.)</div></div>
           <div class="stat"><div class="k">Two nodes</div><div class="v">~4.1<small>k USD</small></div><div class="d">Minimum for a position estimate</div></div>
           <div class="stat"><div class="k">Hardware</div><div class="v">0<small> ordered</small></div><div class="d">BOM costed, not purchased</div></div>
         </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="block" id="products" data-sec="Products">
+        <h2>Products</h2>
+        <p class="sub">One platform, three lines, one event log and one Polish report. Air comes first. Details and reasoning in <span class="mono">product/portfolio.md</span>.</p>
+        <div class="banner">
+          <i class="ph-light ph-warning" aria-hidden="true"></i>
+          <div><strong>Nothing here is measured.</strong> We have no radar: HERMES cannot see people. The ground line is software tested on synthetic data with no sensor chosen. Simulator numbers are the scenario's assumptions, never performance, and never go into a pitch or a grant application as results.</div>
+        </div>
+        <div class="cards">
+          <a class="card" href="../../product/spec-v1.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-broadcast"></i><h3>HERMES · air</h3></div><p>Passive drone detection: Remote ID + KrakenSDR direction finding (433/868 MHz, 1.2 GHz).</p><span class="meta">software built · hardware not ordered</span></a>
+          <a class="card" href="../../product/perimeter.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-person-simple-walk"></i><h3>SKARVIS Teren · ground</h3></div><p>Person / animal / vehicle. Alarms only inside the fence and only when two sensor types agree.</p><span class="meta">software only · no sensor chosen</span></a>
+          <a class="card" href="../site/trener/" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-graduation-cap"></i><h3>SKARVIS Trener · drills</h3></div><p>Scenario simulator + Polish operator console. Opens the demo exercise.</p><span class="meta">works · synthetic data</span></a>
+          <a class="card" href="../../product/simulator.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-airplane-tilt"></i><h3>Flight lab · idea</h3></div><p>Realistic 3D environment to build, fly and test drones (asked 2026-10-29). Plan only.</p><span class="meta">not started · decision D6</span></a>
+        </div>
+
+        <h3 class="label" style="margin:28px 0 8px">What the simulator found in our own pipeline</h3>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead><tr><th>#</th><th>Finding</th><th>Effect in the demo run (assumptions)</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">F-1</td><td>Classifier only knew 2.4/5.8 GHz bands, so every KrakenSDR detection was band-gated</td><td>868 MHz FPV heard, never alarmed</td><td><span class="pill pill-ok">fixed</span></td></tr>
+              <tr><td class="mono">F-2</td><td>Cooldown per 1 MHz bin; hopping links move several MHz</td><td>14 RF alarms instead of 4</td><td><span class="pill pill-warn">option added</span></td></tr>
+              <tr><td class="mono">F-3</td><td>Baseline keeps learning while running</td><td>First FPV alarm at 93 m instead of 668 m</td><td><span class="pill pill-warn">proposal for Hermes</span></td></tr>
+              <tr><td class="mono">F-4</td><td>No distance rule on air alarms</td><td>Remote ID drone alarmed 913 m out</td><td><span class="pill">open question</span></td></tr>
+              <tr><td class="mono">F-5</td><td>No baseline learning period at install</td><td>Site's own 433.92 MHz telemetry alarms</td><td><span class="pill pill-warn">add to install steps</span></td></tr>
+              <tr><td class="mono">F-6</td><td>Two weak sensors can agree on the same mistake</td><td>Deer outside thermal coverage = false alarm</td><td><span class="pill">needs field data</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="label" style="margin:28px 0 8px">Decisions for Casper</h3>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead><tr><th>#</th><th>Decision</th><th>Recommendation</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">D1</td><td>Receive-only rule for ground sensing?</td><td>Keep it. Passive sensors + integrate the events of a radar or camera the site already owns.</td></tr>
+              <tr><td class="mono">D2</td><td>Public names for ground line and trainer</td><td>Keep "Teren" / "Trener" as working names until a buyer has seen them.</td></tr>
+              <tr><td class="mono">D3</td><td>Trainer free or paid?</td><td>Free demo for site staff; paid = a scenario built from a customer's real site.</td></tr>
+              <tr><td class="mono">D4</td><td>Detect phones / Wi-Fi devices?</td><td>Not without a written legal opinion (RODO).</td></tr>
+              <tr><td class="mono">D5</td><td>Order of work</td><td>HERMES phase 1 first. Ground hardware only after it passes and a buyer asks.</td></tr>
+              <tr><td class="mono">D6</td><td>Flight lab: browser prototype or Unreal Engine path?</td><td>See <span class="mono">product/simulator.md</span>, "Flight lab". Waiting for Casper.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="plain" style="margin-top:20px">
+          <li><strong>Considered, not adopted (2026-10-29):</strong> a drone-carried camouflage canopy ("Air Cover" concept). Military concealment, opposite of our job, likely controlled military goods, hard physics. Adjacent idea worth keeping: a receive-only radio-signature check of a site.</li>
+        </ul>
       </section>
 
       <!-- BUY-LIST -->
@@ -127,6 +177,7 @@
           <li><strong>EO/IR thermal camera</strong> — cost, trigger interface, privacy obligations. v2.</li>
           <li><strong>AntSDR E200</strong> (DJI DroneID, ~2,450 PLN) — valuable, but waits for a pilot.</li>
           <li><strong>Test drone</strong> — borrow first; separate budget and legal review (insurance since 13 Nov 2025).</li>
+          <li><strong>Ground sensors</strong> (MLX90640 thermal array, PIR) — software is ready; buy only after HERMES phase 1 passes and a buyer asks (D5).</li>
         </ul>
 
         <h3 class="label" style="margin:28px 0 8px">Ordering checklist — do not skip</h3>
@@ -369,7 +420,7 @@
       <!-- SOFTWARE -->
       <section class="block" id="software" data-sec="Software">
         <h2>Software</h2>
-        <p class="sub">Stdlib-only Python, one event schema, 110 tests green. Runs identically on a laptop and the Pi.</p>
+        <p class="sub">Stdlib-only Python, one event schema, 163 tests green. Runs identically on a laptop and the Pi.</p>
         <div class="cards">
           <a class="card" href="../../software/czapla/detector.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-waveform"></i><h3>detector.py</h3></div><p>Peaks above the noise floor.</p><span class="meta">rf</span></a>
           <a class="card" href="../../software/czapla/doa.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-compass"></i><h3>doa.py</h3></div><p>Direction of arrival, array radius helper.</p><span class="meta">bearing</span></a>
@@ -377,12 +428,16 @@
           <a class="card" href="../../software/czapla/fusion.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-intersect"></i><h3>fusion.py</h3></div><p>Two bearings to a position.</p><span class="meta">fuse</span></a>
           <a class="card" href="../../software/czapla/policy.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-bell"></i><h3>policy.py</h3></div><p>Thresholds, cooldown, whitelist.</p><span class="meta">alarm</span></a>
           <a class="card" href="../../software/czapla/report.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-file-text"></i><h3>report.py</h3></div><p>Polish incident report.</p><span class="meta">output</span></a>
+          <a class="card" href="../../software/czapla/ground.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-person-simple-walk"></i><h3>ground.py</h3></div><p>Person / animal / vehicle from several sensor types. Priors, not fitted.</p><span class="meta">ground</span></a>
+          <a class="card" href="../../software/czapla/sim.py" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-play-circle"></i><h3>sim.py</h3></div><p>Scenario simulator through the real pipeline. Synthetic only.</p><span class="meta">simulator</span></a>
         </div>
         <details class="code">
           <summary>Run it</summary>
           <pre>cd software
-python -m unittest discover -s tests -v     <span style="color:#9a978f"># 110 tests</span>
-python -m czapla.pipeline --demo            <span style="color:#9a978f"># one simulated detection event</span></pre>
+python -m unittest discover -s tests -v     <span style="color:#9a978f"># 163 tests</span>
+python -m czapla.pipeline --demo            <span style="color:#9a978f"># one simulated detection event</span>
+python -m czapla.sim                        <span style="color:#9a978f"># demo scenario, scorecard (synthetic)</span>
+python -m czapla.sim --no-store --out ../web/site/trener/runs/podstacja.js   <span style="color:#9a978f"># refresh the trainer</span></pre>
         </details>
       </section>
 
@@ -397,6 +452,9 @@ python -m czapla.pipeline --demo            <span style="color:#9a978f"># one si
           <a class="card" href="../../product/roadmap.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-path"></i><h3>Roadmap</h3></div><p>Phases with kill criteria.</p><span class="meta">product</span></a>
           <a class="card" href="../../hardware/test-plan.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-flask"></i><h3>Test plan</h3></div><p>T-1 to T-11, how we prove it works.</p><span class="meta">hardware</span></a>
           <a class="card" href="../../research/legal-pl.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-scales"></i><h3>Legal (PL)</h3></div><p>What's allowed, who may act.</p><span class="meta">research</span></a>
+          <a class="card" href="../../product/portfolio.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-squares-four"></i><h3>Product family</h3></div><p>Air, ground, trainer; findings and decisions.</p><span class="meta">product</span></a>
+          <a class="card" href="../../product/perimeter.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-person-simple-walk"></i><h3>Ground line</h3></div><p>Sensor options, classifier, tests T-G1 to T-G5.</p><span class="meta">product</span></a>
+          <a class="card" href="../../product/simulator.md" target="_blank" rel="noopener"><div class="ct"><i class="ph-light ph-graduation-cap"></i><h3>Simulator, trainer, flight lab</h3></div><p>Assumptions, findings, the flight-lab plan.</p><span class="meta">product</span></a>
         </div>
       </section>
 

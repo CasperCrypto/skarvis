@@ -7,7 +7,7 @@ Does:
     those reports through the same classifier, baseline, alarm policy, fusion and
     event store the real system uses. Scores the outcome per actor (seen? alarmed?
     how early? right class?) and writes a run file that the browser trainer
-    (web/sim) plays back for operator drills.
+    (web/site/trener) plays back for operator drills.
 
 Does NOT do:
     Measure anything. Every range, SNR, accuracy and false-positive figure comes
@@ -21,7 +21,7 @@ Does NOT do:
 
 Run:
     python -m czapla.sim                          # built-in demo scenario
-    python -m czapla.sim --no-store --out ../web/sim/runs/podstacja.js
+    python -m czapla.sim --no-store --out ../web/site/trener/runs/podstacja.js
 """
 
 from __future__ import annotations
@@ -916,7 +916,7 @@ def _print_summary(run: dict) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="SKARVIS scenario simulator (synthetic)")
     parser.add_argument("--scenario", default=DEFAULT_SCENARIO, help="scenario JSON file")
-    parser.add_argument("--out", help="write the run (for web/sim) to this JSON file")
+    parser.add_argument("--out", help="write the run (for web/site/trener) to this JSON file")
     parser.add_argument(
         "--store",
         default=None,

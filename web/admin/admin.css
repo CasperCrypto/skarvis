@@ -247,6 +247,7 @@ table.data { border-collapse: collapse; width: 100%; min-width: 620px; font-size
 table.data th, table.data td { text-align: left; padding: 11px 14px; border-top: 1px solid var(--line); vertical-align: top; }
 table.data thead th { border-top: 0; border-bottom: 1px solid var(--ink); background: var(--panel); font-size: 11px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); font-weight: 500; position: sticky; top: 0; }
 table.data tbody tr.done td { color: var(--mute); }
+table.data td.mono { white-space: nowrap; }
 table.data tbody tr.done .pn { text-decoration: line-through; }
 .num { font-family: var(--mono); text-align: right; white-space: nowrap; }
 .pn { font-weight: 500; }

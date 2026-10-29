@@ -726,7 +726,7 @@
 
   readColors();
   if (window.SKARVIS_RUN) load(window.SKARVIS_RUN);
-  else showError('Brak pliku runs/podstacja.js. Wygeneruj przebieg: cd software && python -m czapla.sim --no-store --out ../web/sim/runs/podstacja.js');
+  else showError('Brak pliku runs/podstacja.js. Wygeneruj przebieg: cd software && python -m czapla.sim --no-store --out ../web/site/trener/runs/podstacja.js');
   resize();
   requestAnimationFrame(tick);
 })();

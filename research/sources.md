@@ -159,6 +159,7 @@ unless noted. If you add a claim, add its source here in the same commit.
   — Microsoft AirSim archived; successor Project AirSim (IAMAI, MIT licence).
 - https://docs.px4.io/main/en/simulation — PX4 software-in-the-loop with Gazebo (`make px4_sitl gz_x500`), lockstep, speed factor; free and open source.
 - https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html — ArduPilot SITL runs Copter/Plane/Rover without hardware; external physics via JSON interface.
+- https://ardupilot.org/dev/docs/sitl-with-pterosim.html — PteroSim: an Unreal Engine 5 simulator that connects to ArduPilot SITL through the JSON interface (UDP port 9002). Retrieved 2026-10-28, cited for the flight-lab plan 2026-10-29.
 - https://oscarliang.com/fpv-simulator/ and https://dronedj.com/2021/05/09/best-fpv-drone-simulators-in-2021/
   — consumer FPV simulators (Liftoff ~USD 19.99 on Steam, VelociDrone from ~USD 19.99 own site, DRL Simulator ~USD 9.99). Prices from roundups, may be outdated.
 

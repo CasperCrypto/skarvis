@@ -132,7 +132,7 @@ frequency.
 | `czapla/pipeline.py` | Wire it together; `--demo` runs a simulated detection | Own any of the above |
 | `czapla/node_rx.py` | Receive node JSON over LAN, validate schema | Capture RF itself |
 | `czapla/ground.py` | Classify a ground object (human / animal / vehicle) from several sensor types | Detect, track, alarm, identify people |
-| `czapla/sim.py` | Scenario simulator: synthetic actors and sensor reports through the real pipeline, scorecard, run file for `web/sim` | Measure anything; model attack, evasion or countermeasures |
+| `czapla/sim.py` | Scenario simulator: synthetic actors and sensor reports through the real pipeline, scorecard, run file for `web/site/trener` | Measure anything; model attack, evasion or countermeasures |
 
 ## Dependency policy
 

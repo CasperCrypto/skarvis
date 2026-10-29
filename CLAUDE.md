@@ -91,7 +91,7 @@ python -m czapla.pipeline --demo            # print one simulated detection even
 - **Product family:** read `product/portfolio.md`. SKARVIS now has three lines
   on one platform: HERMES (air), a ground line for people / animals / vehicles
   (working name SKARVIS Teren, software only) and a simulator + operator
-  trainer (working name SKARVIS Trener, `software/czapla/sim.py`, `web/sim/`).
+  trainer (working name SKARVIS Trener, `software/czapla/sim.py`, `web/site/trener/`).
 - **We have no radar.** Do not write that HERMES or the KrakenSDR detects
   people. Ground sensing needs new sensors; the receive-only rule still holds
   for our hardware until Casper decides D1 (integrating a site's own radar
@@ -105,3 +105,7 @@ python -m czapla.pipeline --demo            # print one simulated detection even
   device detection is out until a written legal opinion exists (RODO).
 - Simulator findings F-1 to F-6 are in `product/portfolio.md`; F-1 is fixed,
   F-2 and F-3 wait for the owner of `software/`.
+- 2026-10-29: the public site has a platform section (HERMES / Teren / Trener,
+  each with its real status tag) and the trainer moved to `web/site/trener/`.
+  The flight lab (build, fly, test drones in 3D) is a plan in
+  `product/simulator.md` waiting for decision D6; it is not on the site.
