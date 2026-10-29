@@ -11,7 +11,13 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const gate = document.querySelector('[data-gate]');
 const app = document.querySelector('[data-app]');
 
-if (sessionStorage.getItem('skv-admin') === 'ok') {
+// Storage can be blocked (private windows, embedded viewers); the gate must
+// still appear instead of the script stopping here.
+function wasUnlocked() {
+  try { return sessionStorage.getItem('skv-admin') === 'ok'; } catch (_) { return false; }
+}
+
+if (wasUnlocked()) {
   unlock();
 } else {
   initGate();
