@@ -44,6 +44,10 @@ Then open http://localhost:8080. Any static host works (GitHub Pages,
 Cloudflare Pages, Netlify). `web/vendor/three` holds the copy of three.js
 (r160, MIT) the page loads, so it also works offline.
 
+`.github/workflows/site.yml` runs both test suites on every push and pull
+request and publishes `web/` to GitHub Pages on every push to `main` (one-time
+repository setting: Settings → Pages → Source: **GitHub Actions**).
+
 ## Controls
 
 | Action | Keyboard | Gamepad |
