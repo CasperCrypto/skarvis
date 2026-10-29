@@ -1,11 +1,13 @@
 # Drone world (working name)
 
-Version 2, 2026-10-29. A separate project from SKARVIS, decided by Casper.
+Version 3, 2026-10-30. A separate project from SKARVIS, decided by Casper.
 Replaces the "Flight lab" section that was in `product/simulator.md`.
-**State: first playable browser prototype (M1)**, open source (MIT), in its
-own public repository https://github.com/CasperCrypto/drone-world, playable at
-https://caspercrypto.github.io/drone-world/. Generated landscape, estimated physics; not a real place yet and
-not a certified simulator. Sources for the facts below are in
+**State: realistic world (M1.5)**, open source (MIT), in its own public
+repository https://github.com/CasperCrypto/drone-world, playable at
+https://caspercrypto.github.io/drone-world/. Generated landscape, estimated
+drone physics; not a real place yet and not a certified simulator. The wind
+model and the sun/moon positions cite their sources in that repository's
+README ("Physics notes"). Sources for the facts below are in
 `../research/sources.md` (section "Drone world").
 
 Change from version 1 (Casper, 2026-10-29: "it must be big open source project
@@ -23,6 +25,11 @@ and reuses the same C++ flight physics.
   a gamepad or an on-screen controller.
 - Audience: government programmes, schools, drone builders and operators
   who want to learn, test or show something. Not linked to SKARVIS radars.
+- Added 2026-10-29: a place to **train before flying for real**: realistic
+  looks (scanned textures, lights), **day and night, rain or not,
+  temperature**; **wind that changes**, differs with height and is shaped by
+  trees, buildings and terrain; **batteries and flight time**; more physics.
+  Looks, weather and wind are in M1.5; batteries and air physics are M2.
 
 ## How it is built (decisions and why)
 
@@ -43,13 +50,15 @@ and reuses the same C++ flight physics.
 | # | Result anyone can see | State |
 |---|---|---|
 | M1 | **First flight in the browser**: 1×1 km generated landscape (forest, lake, airfield, gates), camera drone and FPV quad, Hold / Angle / Acro, wind, collisions, keyboard / gamepad / USB radio / touch, own model upload (look only) | **Done (prototype), 2026-10-29** |
-| M2 | Real places: 3D Tiles or open elevation data at a chosen place | Next |
+| M1.5 | **Realistic world**: scanned CC0 textures, about 10,000 generated trees (pine, spruce, oak, birch) with three levels of detail, grass blades, lake, airfield and farm with night lights, real sun and moon for date and time, clouds, fog, rain, storm, snow, wet ground, temperature; a wind field with height profile, travelling gusts, forest and building shelter and slope flow, felt by drone, trees, grass and windsock | **Done, 2026-10-30** |
+| M2 | Energy and air: battery model (capacity, voltage sag, cold), flight time and low-battery behaviour, air density from temperature and height, in the C++ core and the JS port together | Next |
 | M3 | Builder: choose frame, motors, propellers, battery; see the numbers and fly it | Needs motor/propeller data |
-| M4 | The same drone flown by real ArduPilot or PX4 software (SITL) | After M3 |
-| M5 | Accounts, free 1×1 km and paid 10×10 km areas, multiplayer | M4 + a company to take payments |
+| M4 | Real places: 3D Tiles or open elevation data at a chosen place | After M3 |
+| M5 | The same drone flown by real ArduPilot or PX4 software (SITL) | After M4 |
+| M6 | Accounts, free 1×1 km and paid 10×10 km areas, multiplayer | M5 + a company to take payments |
 | U1 | Unreal Engine 5 client with the same physics | Windows PC with an NVIDIA RTX card (Casper has an RTX 3060) |
 
-Gate before M5 (before spending on accounts, servers or payments): at least
+Gate before M6 (before spending on accounts, servers or payments): at least
 five conversations with schools, flight training, government programmes or
 drone builders, and at least one that says it would use or pay for it.
 
@@ -79,6 +88,6 @@ drone builders, and at least one that says it would use or pay for it.
 
 1. Name of the project (the repository is `drone-world` for now; GitHub keeps
    redirects if it is renamed).
-2. The first real place for M2 (somewhere you know; not a sensitive site).
+2. The first real place for M4 (somewhere you know; not a sensitive site).
 3. Where the public version is hosted (GitHub Pages of the new repository is
    the simplest).
