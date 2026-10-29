@@ -48,7 +48,8 @@ dashboard now and then, or move to a paid plan before launch.
 - [ ] Confirm the 12-month retention period in the privacy pages.
 - [ ] Set `contactEmail` in `assets/js/config.js` once a domain mailbox exists.
 - [ ] Optional for RODO: self-host the fonts, icons and Three.js instead of
-      loading them from Google Fonts, unpkg and jsDelivr.
+      loading them from Google Fonts and jsDelivr. (Icons are self-hosted
+      since 2026-10-29: `assets/vendor/phosphor-light/`, MIT licence.)
 - [ ] Choose hosting. GitHub Pages works for a static site, but on a private
       repository it needs a paid GitHub plan.
 

@@ -30,6 +30,7 @@ building them turns this into an arms business. Detection and evidence only.
 | Path | What's in it |
 |---|---|
 | `CLAUDE.md` | Instructions for Claude Code working in this folder |
+| `DEPLOY.md` | How to put the public site and the private console online (Cloudflare Pages + Access) |
 | `research/market.md` | Market size, demand drivers, verified numbers |
 | `research/legal-pl.md` | Polish law: what's allowed, what isn't, who may do what |
 | `research/competitors.md` | Who already sells this and at what price |

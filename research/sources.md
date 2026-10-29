@@ -168,3 +168,10 @@ unless noted. If you add a claim, add its source here in the same commit.
   — MON announces a civilian "Dron Legion"; minister speaks of needing hundreds of thousands of drone operators; training and certification centre at 25th Air Cavalry Brigade; "Blue Eye 2026" exercise to repeat. Same report: Minister of Infrastructure says >560,000 certified drone operators in Poland.
 - https://defence24.pl/polityka-obronna/szkolenie-operatorow-dronow-w-klasach-mundurowych
   and https://xyz.pl/?p=127553 — MON pilot "OPW z dronem" for uniformed-class secondary schools: training from April 2026, ULC open-category exams paid by MON, target up to 500 schools.
+
+## Hosting — retrieved 2026-10-29 (used in DEPLOY.md)
+- https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site and https://github.com/orgs/community/discussions/22817
+  — GitHub Pages from a private repository needs a paid plan (Pro / Team / Enterprise); Pages sites are public even when the repository is private.
+- https://developers.cloudflare.com/pages/get-started/guide/ — Cloudflare Pages deploys public and private GitHub repositories after authorisation; build output directory is relative to the repository root.
+- https://revdoku.com/blog/how-to-password-protect-a-cloudflare-pages-site/ and https://israynotarray.com/en/misc/2026/05/13/cloudflare-pages-preview-urls-stay-forever-lock-with-access/
+  — Cloudflare Access in front of a Pages project, one-time PIN by email, wildcard entry for preview URLs; free tier reported as up to 50 users (third-party blogs, not Cloudflare's pricing page).
