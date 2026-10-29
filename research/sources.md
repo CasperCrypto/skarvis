@@ -185,3 +185,9 @@ unless noted. If you add a claim, add its source here in the same commit.
   — EdgeTX radios: "USB Joystick (HID)" mode, no driver, seen as a generic joystick by simulators; USB ID 1209:4F54.
 - https://skybrary.aero/articles/regulation-2019947-rules-and-procedures-unmanned-aircraft and https://www.legislation.gov.uk/eur/2019/947/annex/data.pdf
   — Regulation (EU) 2019/947: open category must not fly over assemblies of people; specific category needs an operational authorisation based on a risk assessment; over assemblies of people with a characteristic dimension of 3 m or more → certified category. Secondary and UK-hosted copies; confirm on EUR-Lex.
+- https://www.summerengine.com/make-great-games/unreal-engine-html5-export
+  — Unreal Engine has had no HTML5 / browser export since 4.24; running it in a browser today means Pixel Streaming (a GPU server renders per player and streams video). Third-party article, retrieved 2026-10-29; cited for the browser-first decision in `ventures/drone-world.md`.
+- https://github.com/NASA-AMMOS/3DTilesRendererJS
+  — 3DTilesRendererJS: open-source three.js renderer for 3D Tiles (originally from NASA JPL); planned for real terrain in Drone World M2. Retrieved 2026-10-29.
+- https://github.com/mrdoob/three.js/releases/tag/r160 and https://github.com/mrdoob/three.js/blob/dev/LICENSE
+  — three.js r160, MIT licence; vendored in `ventures/drone-world/web/vendor/three/`. Retrieved 2026-10-29.

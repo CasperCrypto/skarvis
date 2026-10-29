@@ -28,8 +28,9 @@ number are in `research/sources.md`; estimates are marked.
    open-source autopilots ship their own simulators (PX4 and ArduPilot SITL).
    We can integrate those later; we should not rebuild them. Casper decided
    on 2026-10-29 to build one anyway, as a **separate project outside
-   SKARVIS** (a hyper-realistic 3D space in Unreal Engine 5, 1×1 km free and
-   10×10 km paid, with a drone builder and model upload): `ventures/drone-world.md`.
+   SKARVIS** (an open-source 3D space to build, fly and test drones, browser
+   first with three.js and Unreal Engine 5 later, 1×1 km free and 10×10 km
+   paid, with a drone builder and model upload): `ventures/drone-world.md`.
 
 Status does not change: no hardware ordered, no field test, no customer, no
 company. Everything built on 2026-10-28 is software tested on synthetic data.
@@ -169,7 +170,7 @@ Nothing about the ground line or the trainer goes on the public site yet.
 | D3 | Trainer free or paid? | Free demo for site security staff; paid work is a scenario built from a customer's real site and procedure. No public release with real sensor models. |
 | D4 | Detect phones and Wi-Fi devices? | **Not without a written legal opinion.** MAC addresses with location are personal data per EU regulators. |
 | D5 | Order of work. | HERMES phase 1 first, unchanged. Trainer: done for now, use it in conversations. Ground: software done; buy ground hardware only after HERMES phase 1 passes **and** a buyer asks for it. |
-| D6 | Flight lab: browser prototype or Unreal Engine path? | **Decided by Casper 2026-10-29:** Unreal Engine 5, as a separate project outside SKARVIS. Plan and milestones in `ventures/drone-world.md`. |
+| D6 | Flight lab: browser prototype or Unreal Engine path? | **Decided by Casper 2026-10-29:** a separate open-source project outside SKARVIS, browser first (three.js) with an Unreal Engine 5 client later on the same physics. First playable prototype in `ventures/drone-world/`; plan in `ventures/drone-world.md`. |
 
 ## Moved to separate projects (2026-10-29)
 

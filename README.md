@@ -31,7 +31,7 @@ building them turns this into an arms business. Detection and evidence only.
 |---|---|
 | `CLAUDE.md` | Instructions for Claude Code working in this folder |
 | `DEPLOY.md` | How to put the public site and the private console online (Cloudflare Pages + Access) |
-| `ventures/` | Separate projects, not SKARVIS products: drone world (3D build/fly/test) and canopy drones. Plans only |
+| `ventures/` | Separate projects, not SKARVIS products: Drone World (open-source 3D build/fly/test sandbox, browser prototype in `ventures/drone-world/`) and canopy drones (concept) |
 | `research/market.md` | Market size, demand drivers, verified numbers |
 | `research/legal-pl.md` | Polish law: what's allowed, what isn't, who may do what |
 | `research/competitors.md` | Who already sells this and at what price |
@@ -64,8 +64,8 @@ building them turns this into an arms business. Detection and evidence only.
 | Field tests | **None run.** The only verification is against simulated signals. |
 | Customer / pilot | **None.** No contact has been made. |
 | Company | **Does not exist.** No sp. z o.o. registered. |
-| Landing page | `web/site/`, SKARVIS, Polish + English, built 2026-10-22, not yet hosted. States the limitations; every spec labelled as a target. Platform section (HERMES, Teren, Trener with their real status) and the trainer demo at `web/site/trener/` added 2026-10-29. |
-| Ventures | **Plans only** (2026-10-29): drone world (Unreal Engine 5) and civilian canopy drones, separate from SKARVIS. `ventures/`. |
+| Landing page | `web/site/`, SKARVIS, Polish + English, built 2026-10-22. Live on GitHub Pages from the public repository `CasperCrypto/skarvis-site`, a copy of `web/site`. States the limitations; every spec labelled as a target. Platform section (HERMES, Teren, Trener with their real status) and the trainer demo at `web/site/trener/` added 2026-10-29. |
+| Ventures | Separate from SKARVIS (2026-10-29). Drone World: **first playable browser prototype**, open source, generated landscape and estimated physics (three.js now, Unreal Engine 5 later). Civilian canopy drones: **concept only**. `ventures/`. |
 | Ground line | **Software only** (2026-10-28): classifier, policy, schema, tested on synthetic data. No sensor chosen. |
 | Trainer | **Built** (2026-10-28): scenario simulator + Polish operator console. Synthetic data; its numbers are assumptions, not measurements. |
 

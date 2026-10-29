@@ -110,6 +110,12 @@ python -m czapla.pipeline --demo            # print one simulated detection even
   The flight lab (build, fly, test drones in 3D) is not on the site.
 - 2026-10-29, later: the flight lab and the canopy drones are **separate
   projects, not SKARVIS products**, kept in `ventures/` until they get their
-  own repositories. Drone world = Unreal Engine 5 (Casper's decision). Canopy
-  = civilian only (VIP privacy, accident scenes); military concealment stays
-  excluded. Neither goes on the SKARVIS site.
+  own repositories. Canopy = civilian only (VIP privacy, accident scenes);
+  military concealment stays excluded. Neither goes on the SKARVIS site.
+- 2026-10-29, latest: Drone World is **open source (MIT), browser first
+  (three.js), Unreal Engine 5 later** (Casper's decision, replaces "Unreal
+  first"). Code in `ventures/drone-world/`: shared C++ physics in `core/cpp`,
+  its line-by-line JS port in `web/src/flight.js`; keep them in step and
+  regenerate `core/fixtures/trajectory.json` when either changes. The web
+  client is not under the stdlib-only rule (that rule is for `software/`);
+  its only dependency is the vendored three.js.

@@ -106,7 +106,8 @@ the owner of `software/` (Hermes):
 ## Flight lab: moved out of SKARVIS (2026-10-29)
 
 Casper decided the 3D environment to build, fly and test drones is a
-separate project, not part of SKARVIS and not linked to its sensors, and
-that it is built in Unreal Engine 5 rather than as a browser prototype. Its
-plan is in `ventures/drone-world.md`. The trainer above stays what it is:
+separate project, not part of SKARVIS and not linked to its sensors. It is
+open source, browser first (three.js) with an Unreal Engine 5 client later on
+the same physics. Its plan is in `ventures/drone-world.md` and its code in
+`ventures/drone-world/`. The trainer above stays what it is:
 alarm-handling drills for the people who protect a site.
