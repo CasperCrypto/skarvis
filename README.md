@@ -31,7 +31,7 @@ building them turns this into an arms business. Detection and evidence only.
 |---|---|
 | `CLAUDE.md` | Instructions for Claude Code working in this folder |
 | `DEPLOY.md` | How to put the public site and the private console online (Cloudflare Pages + Access) |
-| `ventures/` | Separate projects, not SKARVIS products: Drone World (open-source 3D build/fly/test sandbox, browser prototype in `ventures/drone-world/`) and canopy drones (concept) |
+| `ventures/` | Separate projects, not SKARVIS products: Drone World (open-source 3D build/fly/test sandbox, browser prototype, public repository https://github.com/CasperCrypto/drone-world) and canopy drones (concept) |
 | `research/market.md` | Market size, demand drivers, verified numbers |
 | `research/legal-pl.md` | Polish law: what's allowed, what isn't, who may do what |
 | `research/competitors.md` | Who already sells this and at what price |

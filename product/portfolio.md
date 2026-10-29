@@ -170,7 +170,7 @@ Nothing about the ground line or the trainer goes on the public site yet.
 | D3 | Trainer free or paid? | Free demo for site security staff; paid work is a scenario built from a customer's real site and procedure. No public release with real sensor models. |
 | D4 | Detect phones and Wi-Fi devices? | **Not without a written legal opinion.** MAC addresses with location are personal data per EU regulators. |
 | D5 | Order of work. | HERMES phase 1 first, unchanged. Trainer: done for now, use it in conversations. Ground: software done; buy ground hardware only after HERMES phase 1 passes **and** a buyer asks for it. |
-| D6 | Flight lab: browser prototype or Unreal Engine path? | **Decided by Casper 2026-10-29:** a separate open-source project outside SKARVIS, browser first (three.js) with an Unreal Engine 5 client later on the same physics. First playable prototype in `ventures/drone-world/`; plan in `ventures/drone-world.md`. |
+| D6 | Flight lab: browser prototype or Unreal Engine path? | **Decided by Casper 2026-10-29:** a separate open-source project outside SKARVIS, browser first (three.js) with an Unreal Engine 5 client later on the same physics. First playable prototype in the public repository https://github.com/CasperCrypto/drone-world; plan in `ventures/drone-world.md`. |
 
 ## Moved to separate projects (2026-10-29)
 

@@ -2,8 +2,9 @@
 
 Version 2, 2026-10-29. A separate project from SKARVIS, decided by Casper.
 Replaces the "Flight lab" section that was in `product/simulator.md`.
-**State: first playable browser prototype (M1)** in `drone-world/`, open
-source (MIT). Generated landscape, estimated physics; not a real place yet and
+**State: first playable browser prototype (M1)**, open source (MIT), in its
+own public repository https://github.com/CasperCrypto/drone-world, playable at
+https://caspercrypto.github.io/drone-world/. Generated landscape, estimated physics; not a real place yet and
 not a certified simulator. Sources for the facts below are in
 `../research/sources.md` (section "Drone world").
 
@@ -35,7 +36,7 @@ and reuses the same C++ flight physics.
 | Controllers | EdgeTX radios over USB, gamepads, keyboard, on-screen touch sticks | EdgeTX radios offer a "USB Joystick (HID)" mode and need no driver; the browser's Gamepad API sees them like a gamepad (USB ID 1209:4F54). Done in M1. |
 | Builder numbers | Thrust, weight, hover throttle, flight time from parts | Needs real motor and propeller test tables. Until we have them, every computed figure is shown as an estimate. |
 | Delivery | A static website (any static host); later a Windows download for the Unreal client | Free to host for the browser version. |
-| Code home | Its own public GitHub repository (MIT) | Casper creates it and gives it a name; until then it lives in `drone-world/` here. |
+| Code home | Its own public GitHub repository (MIT): https://github.com/CasperCrypto/drone-world | Created by Casper 2026-10-29. GitHub Pages publishes `web/` on every push to `main` after the tests pass. The public repository does not mention SKARVIS. |
 
 ## Milestones (each one only after the previous works)
 
@@ -76,7 +77,8 @@ drone builders, and at least one that says it would use or pay for it.
 
 ## Open decisions for Casper
 
-1. Name of the project (and of its public repository).
+1. Name of the project (the repository is `drone-world` for now; GitHub keeps
+   redirects if it is renamed).
 2. The first real place for M2 (somewhere you know; not a sensitive site).
 3. Where the public version is hosted (GitHub Pages of the new repository is
    the simplest).

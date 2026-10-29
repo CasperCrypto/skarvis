@@ -4,11 +4,12 @@ Decided by Casper on 2026-10-29. These ideas are **not** part of the SKARVIS
 detection platform: separate audience, separate rules, later their own
 repositories and possibly their own company. They live here only until each
 gets its own repository (Casper creates it; Claude cannot create repositories
-from its session). Drone World is open source (MIT) from the start.
+from its session). Drone World has its own public repository since 2026-10-29
+(https://github.com/CasperCrypto/drone-world, MIT), live at https://caspercrypto.github.io/drone-world/.
 
 | Project | Working name | What it is | State |
 |---|---|---|---|
-| [drone-world.md](drone-world.md), code in [drone-world/](drone-world/) | Drone World (name to choose) | Open-source 3D sandbox to build, fly and test drones, in the browser first (three.js), Unreal later; 1×1 km free, 10×10 km paid | First playable prototype (M1): generated 1×1 km landscape, estimated physics. Not a real place yet |
+| [drone-world.md](drone-world.md), code in [CasperCrypto/drone-world](https://github.com/CasperCrypto/drone-world) (public) | Drone World (name to choose) | Open-source 3D sandbox to build, fly and test drones, in the browser first (three.js), Unreal later; 1×1 km free, 10×10 km paid | First playable prototype (M1): generated 1×1 km landscape, estimated physics. Not a real place yet |
 | [canopy.md](canopy.md) | Canopy drones (name to choose) | Four synchronised drones holding a sheet over a person or a scene: VIP privacy, accident scenes, shade | Concept. Nothing built. Test in the drone world first |
 
 Rules that still apply here (from `../CLAUDE.md`): no invented capability in

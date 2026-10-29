@@ -190,4 +190,4 @@ unless noted. If you add a claim, add its source here in the same commit.
 - https://github.com/NASA-AMMOS/3DTilesRendererJS
   — 3DTilesRendererJS: open-source three.js renderer for 3D Tiles (originally from NASA JPL); planned for real terrain in Drone World M2. Retrieved 2026-10-29.
 - https://github.com/mrdoob/three.js/releases/tag/r160 and https://github.com/mrdoob/three.js/blob/dev/LICENSE
-  — three.js r160, MIT licence; vendored in `ventures/drone-world/web/vendor/three/`. Retrieved 2026-10-29.
+  — three.js r160, MIT licence; vendored in `web/vendor/three/` of https://github.com/CasperCrypto/drone-world. Retrieved 2026-10-29.
