@@ -30,6 +30,7 @@ building them turns this into an arms business. Detection and evidence only.
 | Path | What's in it |
 |---|---|
 | `CLAUDE.md` | Instructions for Claude Code working in this folder |
+| `DEPLOY.md` | How to put the public site and the private console online (Cloudflare Pages + Access) |
 | `research/market.md` | Market size, demand drivers, verified numbers |
 | `research/legal-pl.md` | Polish law: what's allowed, what isn't, who may do what |
 | `research/competitors.md` | Who already sells this and at what price |
@@ -39,6 +40,9 @@ building them turns this into an arms business. Detection and evidence only.
 | `product/architecture.md` | Software architecture |
 | `product/detection-approaches.md` | RF vs radar vs acoustic: what we can and can't see |
 | `product/roadmap.md` | Phase plan with kill criteria |
+| `product/portfolio.md` | SKARVIS product family: air (HERMES), ground, trainer; what is possible, decisions D1-D5 |
+| `product/perimeter.md` | Ground line: people / animals / vehicles, sensor options, tests T-G1 to T-G5 |
+| `product/simulator.md` | Scenario simulator and operator trainer, assumptions, findings |
 | `hardware/bom-v1.md` | Order list with real prices and links |
 | `hardware/assembly.md` | How to build the node |
 | `hardware/test-plan.md` | How we prove it works (and how we prove it doesn't) |
@@ -46,6 +50,7 @@ building them turns this into an arms business. Detection and evidence only.
 | `web/index.html` | First landing page draft (Hermes, CZAPLA name, kept for reference) |
 | `web/site/` | Public SKARVIS site, Polish + English, interactive 3D HERMES node, pilot-list form (see `web/site/README.md`) |
 | `web/supabase/` | SQL for the pilot-list table the site writes to |
+| `web/site/trener/` | SKARVIS Trener: Polish operator training console playing simulator runs (synthetic data only), linked from the site |
 | `business/model.md` | Pricing and unit economics |
 | `business/outreach/` | Verified target lists, built but NOT sent |
 
@@ -53,12 +58,15 @@ building them turns this into an arms business. Detection and evidence only.
 
 | Layer | State |
 |---|---|
-| Software | **Built and passing.** 110 unit tests green, two demos run. Stdlib-only. |
+| Software | **Built and passing.** 163 unit tests green (2026-10-28), demos and the simulator run. Stdlib-only. |
 | Hardware | **Nothing ordered.** BOM costed, not purchased. |
 | Field tests | **None run.** The only verification is against simulated signals. |
 | Customer / pilot | **None.** No contact has been made. |
 | Company | **Does not exist.** No sp. z o.o. registered. |
-| Landing page | `web/site/`, SKARVIS, Polish + English, built 2026-10-22, not yet hosted. States the limitations; every spec labelled as a target. |
+| Landing page | `web/site/`, SKARVIS, Polish + English, built 2026-10-22, not yet hosted. States the limitations; every spec labelled as a target. Platform section (HERMES, Teren, Trener with their real status) and the trainer demo at `web/site/trener/` added 2026-10-29. |
+| Flight lab | **Plan only** (2026-10-29): realistic 3D lab to build, fly and test drones. `product/simulator.md`, decision D6. |
+| Ground line | **Software only** (2026-10-28): classifier, policy, schema, tested on synthetic data. No sensor chosen. |
+| Trainer | **Built** (2026-10-28): scenario simulator + Polish operator console. Synthetic data; its numbers are assumptions, not measurements. |
 
 ## The one next action
 

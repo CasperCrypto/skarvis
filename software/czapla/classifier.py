@@ -24,7 +24,30 @@ CLASSIFIER_VERSION = "v1-priors-not-fitted"
 
 # Frequencies where consumer drone control and video links are commonly found.
 # Sources are public band allocations, not vendor data.
-DRONE_BAND_CENTERS_MHZ = (2437.0, 2452.0, 2462.0, 2477.0, 5800.0)
+#
+# 2026-10-28: the KrakenSDR (24-1766 MHz) cannot hear 2.4/5.8 GHz, so with only
+# the 2.4/5.8 GHz centres every Kraken detection was band-gated to "other" and
+# could never alarm (found by running czapla.sim). Added, sources in
+# research/sources.md:
+#   433.05-434.79 MHz and 863-870 MHz  SRD bands used by long-range control links
+#                                      (ExpressLRS and similar). Narrow windows
+#                                      on purpose: mobile-phone uplinks sit just
+#                                      outside them and must not get band credit.
+#                                      915 MHz (US ISM) is left out for the same
+#                                      reason: in Poland that range is phone uplink.
+#   1080-1360 MHz                      1.2 GHz analog FPV video, 8 channels 40 MHz
+#                                      apart. Also holds GNSS (below the noise
+#                                      floor) and L-band air-surveillance radar;
+#                                      T-5 measures what that costs.
+# Each band: (centre MHz, full-credit half-width, zero-credit half-width).
+FPV_1G2_VIDEO_CHANNELS_MHZ = (1080.0, 1120.0, 1160.0, 1200.0, 1240.0, 1280.0, 1320.0, 1360.0)
+WIFI_LIKE_DRONE_CENTERS_MHZ = (2437.0, 2452.0, 2462.0, 2477.0, 5800.0)
+DRONE_BANDS = (
+    ((433.92, 0.87, 2.0), (866.5, 3.5, 4.5))
+    + tuple((c, 5.0, 20.0) for c in FPV_1G2_VIDEO_CHANNELS_MHZ)
+    + tuple((c, 5.0, 20.0) for c in WIFI_LIKE_DRONE_CENTERS_MHZ)
+)
+DRONE_BAND_CENTERS_MHZ = tuple(band[0] for band in DRONE_BANDS)
 
 # Bandwidth signatures, calibrated against what a synthesised carrier actually
 # measures through a Hann window: a steady carrier spreads to a few FFT bins, so its
@@ -41,17 +64,17 @@ W_FHOP = 0.20
 
 
 def band_affinity_mhz(freq_mhz: float) -> float:
-    """How close a frequency is to a known consumer drone band. 1.0 = on centre."""
+    """How close a frequency is to a known drone band. 1.0 = inside the band."""
     best = 0.0
-    for center in DRONE_BAND_CENTERS_MHZ:
+    for center, full, zero in DRONE_BANDS:
         delta = abs(freq_mhz - center)
-        # 20 MHz either side of centre: full credit within 5 MHz, none beyond 20.
-        if delta <= 5.0:
+        # Full credit within the band, fading linearly to none at the zero edge.
+        if delta <= full:
             score = 1.0
-        elif delta >= 20.0:
+        elif delta >= zero:
             score = 0.0
         else:
-            score = 1.0 - (delta - 5.0) / 15.0
+            score = 1.0 - (delta - full) / (zero - full)
         best = max(best, score)
     return best
 

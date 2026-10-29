@@ -17,3 +17,4 @@ development laptop behave identically.
 __version__ = "0.1.0"
 SCHEMA_EVENT = "czapla.event/1"
 SCHEMA_POSITION = "czapla.position/1"
+SCHEMA_GROUND = "czapla.ground/1"

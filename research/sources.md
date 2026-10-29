@@ -117,3 +117,61 @@ unless noted. If you add a claim, add its source here in the same commit.
 ## Remote ID (EU)
 - https://www.easa.europa.eu/en/document-library/general-publications/remote-identification-will-become-mandatory-drones-across
   — EASA, fetched 2026-10-22: from 1 January 2024 all drones in the specific category and all class-marked drones in the open category must have an active, up-to-date remote identification system. Used on the SKARVIS site ("mandatory in the EU since 1 January 2024 for class-marked drones").
+
+## Ground sensing (perimeter: people, animals, vehicles) — retrieved 2026-10-28
+- https://media.melexis.com/-/media/files/documents/datasheets/MLX90640-datasheet-melexis.pdf
+  and https://www.waveshare.com/product/modules/sensors/temperature-humidity-barometer/mlx90640-d55-thermal-camera.htm
+  — MLX90640 thermal array: 32×24 pixels (768), FOV options 55°×35° and 110°×75°, 0.5-64 Hz refresh, I²C, 3.3 V. Passive (receive-only infrared). Used as the cheap-thermal default in the simulator.
+- https://shillehtek.com/blogs/shillehtek-product-manuals/hlk-ld2450-24ghz-mmwave-radar-human-body-tracking-sensor-module-manual
+  and https://www.elemon.com.ar/images/productos/hojas-de-datos/radar-modulos/hlk-ld2450.pdf
+  — Hi-Link HLK-LD2450 24 GHz radar: about 6 m range (retail listings say 8 m), ±60° azimuth, up to 3 targets, X/Y + speed. Indoor presence sensor, NOT a perimeter sensor. It transmits.
+- https://help.axis.com/download/um_d2110_ve_security_radar_t10145149_2501.pdf
+  — Axis D2110-VE security radar (commercial reference): 180° coverage, detection area 5,600 m² for humans and 11,300 m² for vehicles, optimal mount 3.5-4 m; range affected by scene and neighbouring radars. Resellers quote ~60 m people / ~85 m vehicles (reseller figures, not Axis). Classes human / vehicle / unknown.
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC9105660/
+  — Buchman et al., Sensors 2022: pedestrian vs animal recognition from Doppler radar signatures with deep learning (uses synthetic radar data too).
+- https://repository.up.ac.za/items/5c91148e-9879-4b58-9367-e6c0f93e4b6c
+  — van Eeden et al., Expert Systems with Applications 2018: micro-Doppler classification of humans vs animals in an operational environment (GMM + HMM, up to ~95% reported in their setting).
+- https://open.uct.ac.za/items/a65e9cb0-dbae-4a9d-a830-5a1177c08b90
+  — Manga, UCT 2025: FMCW micro-Doppler human vs animal (dogs, horses, cows), best reported 97.66% in their dataset. Lab/field-trial numbers from papers are NOT our numbers.
+- https://www.physicaltherapy.utoronto.ca/sites/default/files/assets/files/11walking-speed-age-and-sex-specific-normative-values-final.pdf
+  — Bohannon & Andrews 2011 meta-analysis (as reproduced): comfortable walking speed ~1.13-1.36 m/s by age/sex band (men 20-29: 1.36; women 70-79: 1.13).
+- https://strathprints.strath.ac.uk/42646/
+  — Tudor-Locke & Rowe 2012: lab walking cadence 96-138 steps/min (women), 81-135 (men); free-living mean 115.2 steps/min. Gives the 1.3-2.3 Hz step-frequency prior.
+
+## Privacy: detecting phones / Wi-Fi devices — retrieved 2026-10-28
+- https://www.aepd.es/guides/wi-fi-tracking-technologies-guidance-for-data-controllers.pdf
+  — Spanish DPA (AEPD), May 2024: Wi-Fi tracking with fixed and random MAC addresses involves processing personal data in many uses.
+- https://privacycompany.eu/blog/what-does-the-gdpr-say-about-wifi-tracking
+  — summary of Article 29 WP opinions (2011: MAC + location treated as personal data; 2017: tracking likely needs consent or anonymisation).
+
+## Radio rules for low-power radar (only relevant if the receive-only rule changes) — retrieved 2026-10-28
+- https://docdb.cept.org/document/845 — ERC Recommendation 70-03 (short range devices), active, last amended 14 Feb 2025. Lists 24.05-24.25 GHz and other SRD bands. Annex assignment for a perimeter radar must be checked in the official text before any purchase.
+- https://en.wikipedia.org/wiki/Short-range_device — secondary summary of SRD bands (24.00-24.25 GHz non-specific SRD; radiodetermination annex). Secondary source; verify against CEPT/UKE.
+
+## Drone radio bands heard by the KrakenSDR (24-1766 MHz) — retrieved 2026-10-28
+- https://en.wikipedia.org/wiki/ExpressLRS — ExpressLRS control links: officially 2.4 GHz and 868/915 MHz ISM, limited 433 MHz support.
+- https://www.drohnen-forum.de/index.php/Thread/64479-ELRS-Flashen/ — ELRS regulatory domains incl. EU_868 and FCC_915 (community source).
+- https://megadron.pl/en/products/kimpok-analog-transmitter-kp-t1216m-33573.html
+  — 1.2 GHz analog FPV video transmitter channel plan: 1080, 1120, 1160, 1200, 1240, 1280, 1320, 1360 MHz (vendor listing).
+
+## Simulation and drone-training landscape — retrieved 2026-10-28
+- https://microsoft.github.io/AirSim/ and https://www.microsoft.com/en-us/research/project/airsim
+  — Microsoft AirSim archived; successor Project AirSim (IAMAI, MIT licence).
+- https://docs.px4.io/main/en/simulation — PX4 software-in-the-loop with Gazebo (`make px4_sitl gz_x500`), lockstep, speed factor; free and open source.
+- https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html — ArduPilot SITL runs Copter/Plane/Rover without hardware; external physics via JSON interface.
+- https://ardupilot.org/dev/docs/sitl-with-pterosim.html — PteroSim: an Unreal Engine 5 simulator that connects to ArduPilot SITL through the JSON interface (UDP port 9002). Retrieved 2026-10-28, cited for the flight-lab plan 2026-10-29.
+- https://oscarliang.com/fpv-simulator/ and https://dronedj.com/2021/05/09/best-fpv-drone-simulators-in-2021/
+  — consumer FPV simulators (Liftoff ~USD 19.99 on Steam, VelociDrone from ~USD 19.99 own site, DRL Simulator ~USD 9.99). Prices from roundups, may be outdated.
+
+## Polish government drone-training context — press reports via search, 2026-10-28 (NOT verified against an official MON text; tvp.info and defence24.pl were not reachable from this session)
+- https://www.tvp.info/95927670/kosiniak-kamysz-zapowiada-dron-legion-polska-potrzebuje-setek-tysiecy-operatorow
+  — MON announces a civilian "Dron Legion"; minister speaks of needing hundreds of thousands of drone operators; training and certification centre at 25th Air Cavalry Brigade; "Blue Eye 2026" exercise to repeat. Same report: Minister of Infrastructure says >560,000 certified drone operators in Poland.
+- https://defence24.pl/polityka-obronna/szkolenie-operatorow-dronow-w-klasach-mundurowych
+  and https://xyz.pl/?p=127553 — MON pilot "OPW z dronem" for uniformed-class secondary schools: training from April 2026, ULC open-category exams paid by MON, target up to 500 schools.
+
+## Hosting — retrieved 2026-10-29 (used in DEPLOY.md)
+- https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site and https://github.com/orgs/community/discussions/22817
+  — GitHub Pages from a private repository needs a paid plan (Pro / Team / Enterprise); Pages sites are public even when the repository is private.
+- https://developers.cloudflare.com/pages/get-started/guide/ — Cloudflare Pages deploys public and private GitHub repositories after authorisation; build output directory is relative to the repository root.
+- https://revdoku.com/blog/how-to-password-protect-a-cloudflare-pages-site/ and https://israynotarray.com/en/misc/2026/05/13/cloudflare-pages-preview-urls-stay-forever-lock-with-access/
+  — Cloudflare Access in front of a Pages project, one-time PIN by email, wildcard entry for preview URLs; free tier reported as up to 50 users (third-party blogs, not Cloudflare's pricing page).

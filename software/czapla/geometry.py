@@ -189,3 +189,73 @@ def cep_from_ray_sigma(
         "selected_cep_m": cep_m,
         "note": "sensitivity to a +-sigma bearing error, not a true CEP",
     }
+
+
+# --- Sensor and target reference constants -------------------------------------
+# Sources are in ../research/sources.md. Anything not sourced is marked ESTIMATE
+# and must be replaced by a measured number before it reaches a buyer.
+
+# KrakenSDR tuning range (krakenrf.com product page). It cannot hear 2.4/5.8 GHz.
+KRAKENSDR_MIN_MHZ = 24.0
+KRAKENSDR_MAX_MHZ = 1766.0
+
+# Free-space path loss slope: received power falls 20 dB per decade of distance.
+FSPL_DB_PER_DECADE = 20.0
+
+# MLX90640 thermal array (Melexis datasheet): 32 x 24 pixels, 55 x 35 deg variant.
+MLX90640_PIXELS_H = 32
+MLX90640_PIXELS_V = 24
+MLX90640_FOV_H_DEG = 55.0
+MLX90640_FOV_V_DEG = 35.0
+
+# Human walking cadence (Tudor-Locke & Rowe 2012: 81-138 steps/min in the lab).
+# Walking speed for scenario actors: 1.1-1.4 m/s (Bohannon & Andrews 2011).
+HUMAN_STEP_HZ = (1.3, 2.3)
+
+# ESTIMATE, not sourced: apparent upright height of an adult, and the point above
+# which a moving object is too fast to be walking or jogging.
+HUMAN_UPRIGHT_HEIGHT_M = (1.3, 2.1)
+HUMAN_MAX_FOOT_SPEED_MPS = 6.0
+
+
+def point_in_polygon(east: float, north: float, polygon: list) -> bool:
+    """True when (east, north) is inside the polygon (list of [east, north]).
+
+    Ray casting. Points exactly on an edge may go either way; a perimeter alarm
+    that depends on centimetres at the fence line is not a decision this
+    function should be trusted with.
+    """
+    inside = False
+    n = len(polygon)
+    if n < 3:
+        return False
+    j = n - 1
+    for i in range(n):
+        ei, ni = polygon[i][0], polygon[i][1]
+        ej, nj = polygon[j][0], polygon[j][1]
+        if (ni > north) != (nj > north):
+            cross_e = ei + (north - ni) * (ej - ei) / (nj - ni)
+            if east < cross_e:
+                inside = not inside
+        j = i
+    return inside
+
+
+def pixel_footprint_m(range_m: float, fov_deg: float, pixels: int) -> float:
+    """Size in metres that one sensor pixel covers at a given range.
+
+    This is why a cheap 32x24 thermal array can tell a person from a fox at 15 m
+    and cannot at 50 m: at long range the whole person fits in one pixel.
+    """
+    if pixels <= 0:
+        raise ValueError("pixels must be positive")
+    return max(0.0, range_m) * math.tan(math.radians(fov_deg / pixels))
+
+
+def path_snr_db(ref_snr_db: float, ref_dist_m: float, dist_m: float) -> float:
+    """Free-space SNR scaling from a reference point. Ignores terrain and multipath.
+
+    The reference (e.g. "30 dB at 100 m") is an assumption until T-2/T-6 measure it.
+    """
+    dist_m = max(dist_m, 1.0)
+    return ref_snr_db - FSPL_DB_PER_DECADE * math.log10(dist_m / max(ref_dist_m, 1.0))
